@@ -3,7 +3,7 @@
 function FilterFeed (){
     const filterBtn = "bg-secondary text-white rounded-md p-1 px-4"
     return(
-        <div className="overflow-hidden">
+        <div id="filter-feed" className="overflow-hidden w-full">
         
             <div className="flex flex-row gap-2.5 justify-around">
                 <button className={filterBtn}>Eventos</button>

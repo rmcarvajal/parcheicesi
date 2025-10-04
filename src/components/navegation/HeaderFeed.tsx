@@ -1,10 +1,11 @@
 
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/LOGO horizontal.png'; 
+import FilterFeed from '../Feed-components/Filter-Feed-Component';
 
 
 
-function Header (){
+function HeaderFeed (){
 
   return (
     <header id='header' className="flex flex-col w-screen bg-white px-5 py-2.5 gap-2.5 shadow-black shadow-sm fixed">
@@ -26,8 +27,9 @@ function Header (){
           </button>
         </div>
       </div>
-      </header>
+      <FilterFeed/>
+    </header>
   );
 };
 
-export default Header;
+export default HeaderFeed;
