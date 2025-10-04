@@ -1,59 +1,33 @@
-import React from 'react';
+
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/LOGO horizontal.png'; 
-import './Header.css'; 
+import FilterFeed from '../Feed-components/Filter-Feed-Component';
 
-interface HeaderProps {
-  title?: string; 
-}
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
-  const tabs = [
-    { to: '/events', label: 'Eventos' },
-    { to: '/campus', label: 'Campus' },
-    { to: '/noticias', label: 'Noticias' },
-    { to: '/donar', label: 'Donar' },
-  ];
+
+function Header (){
 
   return (
-    <header className="header">
-      <div className="header-top">
+    <header id='header' className="flex flex-col w-screen bg-white px-5 py-2.5 gap-2.5 shadow-black shadow-sm fixed">
+      <div id='header-top' className="flex flex-row h-full justify-between">
         <div className="header-left">
-          <img src={logo} alt="Parche ICESI" className="logo" />
-          {title && <h1 className="header-title">{title}</h1>}
+          <img id='logo' src={logo} alt="Parche ICESI" className="h-11" />
         </div>
-        <div className="header-actions">
-          <button className="icon-btn" aria-label="Configuración">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        <div id='header-actions' className="flex flex-row gap-4">
+          <button id='icon-btn' className="size-fit" aria-label="Configuración">
+            <svg id='settings' xmlns="http://www.w3.org/2000/svg"  className="size-9 fill-brand" viewBox="0 0 16 16">
+              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
             </svg>
           </button>
-          <button className="icon-btn" aria-label="Notificaciones">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          <button id='icon-btn' className="size-fit" aria-label="Notificaciones" >
+            <svg id='notifications' xmlns="http://www.w3.org/2000/svg" className="size-9 fill-brand" viewBox="0 0 16 16">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
             </svg>
           </button>
         </div>
       </div>
-      <nav className="header-tabs">
-        {tabs.map((tab) => (
-          <NavLink
-            key={tab.to}
-            to={tab.to}
-            //  active 
-            style={({ isActive }) => ({
-              color: isActive ? '#10B981' : '#64748B',
-              fontWeight: isActive ? 'bold' : 'normal',
-              borderBottom: isActive ? '2px solid #10B981' : 'none',
-            })}
-            className="tab-link"
-          >
-            {tab.label}
-          </NavLink>
-        ))}
-      </nav>
+      <FilterFeed/>
     </header>
   );
 };
