@@ -8,7 +8,6 @@ import FilterFeed from '../Feed-components/Filter-Feed-Component';
 function Header (){
 
   return (
-    <header id='header' className="flex flex-col w-screen bg-white px-5 py-2.5 gap-2.5 shadow-black shadow-sm fixed">
       <div id='header-top' className="flex flex-row h-full justify-between">
         <div className="header-left">
           <img id='logo' src={logo} alt="Parche ICESI" className="h-11" />
@@ -27,8 +26,6 @@ function Header (){
           </button>
         </div>
       </div>
-      <FilterFeed/>
-    </header>
   );
 };
 
