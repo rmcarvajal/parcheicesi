@@ -3,7 +3,6 @@ module.exports = {
         extend: {
             colors: {
                 'brand-primary': '#5353F1',
-                
             },
             
         }

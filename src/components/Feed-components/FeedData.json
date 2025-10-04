@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "user": "Universidad Icesi",
+    "profilePic": "src/Assets/profileIcesi.jpg",
+    "time": 2,
+    "text": "De la cáscara de un banano… ¡A las páginas de una de las revistas científicas más reconocidas del mundo!",
+    "image": "src/Assets/post1.jpg",
+    "likes": 12,
+    "comments": 3,
+    "category": ""
+  },
+  {
+    "id": 2,
+    "user": "Bienestar U",
+    "profilePic": "src/Assets/profileBU.jpg",
+    "time": 2,
+    "text": " Entre charlas, cine y buenos momentos, en BU siempre hay un plan esperando por ti.¡No te lo pierdas y acompáñanos esta semana! #bienestaruniversitario #bu # café #cine #proyectosocial",
+    "image": "src/Assets/post2.jpg",
+    "likes": 12,
+    "comments": 3,
+    "category": ""
+  },
+  {
+    "id": 3,
+    "user": "Bienestar U",
+    "profilePic": "src/Assets/profileBU.jpg",
+    "time": 2,
+    "text": " ¡Orgullo vallecaucano! ✨🏥<br>La Universidad Icesi felicita a la Fundación Valle del Lili por ser reconocida, por cuarto año consecutivo, como el mejor hospital de Colombia según el ranking Worlds Best Hospitals 2025 de Newsweek, consolidándose como un referente en Latinoamérica y el mundo.",
+    "image": "src/Assets/post3.jpg",
+    "likes": 12,
+    "comments": 3,
+    "category": ""
+  }
+
+]
