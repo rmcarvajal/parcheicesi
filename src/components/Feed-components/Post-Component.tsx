@@ -12,7 +12,7 @@ interface PostCompProps{
 function PostComponent({user, pic, time, text, img, cat}:PostCompProps){
 
     return(
-    <div id="post-component" className="flex flex-col bg-white gap-3.5 p-2.5 w-full border-black border-2 rounded-2xl">
+    <div id="post-component" className="flex flex-col w-full min-h-100 bg-white gap-3.5 p-2.5 border-black border-2 rounded-2xl">
         <div className="flex flex-row gap-2.5">
             <img src={pic} className="w-13 h-13 rounded-full"></img>
             <div className="flex flex-col gap-2.5">
