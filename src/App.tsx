@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import NavBarDsk from './components/NavbarDsk';
 import Feed from './Pages/Feed';
 import FeedPC from './Pages/Feed-PC';
-import Messages from './Pages/Messages'; // ¡Solo agregamos esta línea para el nuevo componente!
+import Messages from './Pages/Messages';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
 
@@ -18,11 +18,14 @@ function App() {
       
       <main className="main-content">
         <Routes>
-          {/* rutas de tabs del header */}
+          {/* Rutas existentes*/}
           <Route path="/" element={dskSize? <FeedPC/> : <Feed/> } />
-          <Route path="/messages" element={<Messages />} /> {/* ¡Cambiado aquí: ahora carga Messages en lugar del div! */}
-          <Route path="/materias" element={<div>Página de Noticias</div>} />
-          <Route path="/perfil" element={<div>Página de Donar</div>} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/materias" element={<div>Página de Materias</div>} />
+          <Route path="/perfil" element={<div>Página de Perfil</div>} />
+          {/* ¡Nuevas rutas para login y registro*/}
+          <Route path="/login" element={<div>Página de Login</div>} />
+          <Route path="/registro" element={<div>Página de Registro</div>} />
         </Routes>
       </main>
       {dskSize? "": navBarMvl}
