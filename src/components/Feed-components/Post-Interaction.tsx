@@ -1,7 +1,7 @@
 
 
 function PostInteractions (){
-    const btnEffects = "hover:bg-brand-light hover:text-brand active:bg-brand active:text-white w-full rounded-md p-1"
+    const btnEffects = "hover:bg-brand-light hover:text-brand cursor-pointer active:bg-brand active:text-white w-full rounded-md p-1"
     return(
         <div className="p-2.5 flex flex-col">
             <div className="flex flex-row items-center h-fit gap-0.5">

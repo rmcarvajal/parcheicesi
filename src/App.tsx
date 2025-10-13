@@ -19,9 +19,9 @@ function App() {
         <Routes>
           {/* rutas de tabs del header */}
           <Route path="/" element={dskSize? <FeedPC/> : <Feed/> } />
-          <Route path="/messages" element={<div>Página de Campus</div>} />
-          <Route path="/materias" element={<div>Página de Noticias</div>} />
-          <Route path="/perfil" element={<div>Página de Donar</div>} />
+          <Route path="/messages" element={<div>Página de mensajes</div>} />
+          <Route path="/materias" element={<div>Página de materias</div>} />
+          <Route path="/perfil" element={<div>Página de perfil</div>} />
         </Routes>
       </main>
       {dskSize? "": navBarMvl}
