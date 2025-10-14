@@ -19,12 +19,12 @@ function App() {
       <main className="main-content">
         <Routes>
           {/* Rutas existentes*/}
-          <Route path="/" element={dskSize? <FeedPC/> : <Feed/> } />
+          <Route path="feed" element={dskSize? <FeedPC/> : <Feed/> } />
           <Route path="/messages" element={<Messages />} />
           <Route path="/materias" element={<div>Página de Materias</div>} />
           <Route path="/perfil" element={<div>Página de Perfil</div>} />
           {/* ¡Nuevas rutas para login y registro*/}
-          <Route path="/login" element={<Login/>} />
+          <Route path="/" element={<Login/>} />
           <Route path="/registro" element={<div>Página de Registro</div>} />
         </Routes>
       </main>

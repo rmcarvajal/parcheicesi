@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { NavLink } from "react-router-dom"
 function Login(){
 const [showpass, setShowpass] = useState("password")
 
@@ -18,8 +19,10 @@ const [showpass, setShowpass] = useState("password")
             <button onClick={() => setShowpass(textType => (textType === "text" ? "password" : "text"))}>Show</button>
 
             <a href="" className="underline">¿Olvidaste tu contraseña?</a>
-
-            <button className="bg-green-500">Iniciar sesion</button>
+            <NavLink to="/registro" className="underline">¿No tienes cuenta? Registrate</NavLink>
+            <NavLink to="/feed">
+                <button className="bg-green-500">Iniciar sesion</button>
+            </NavLink>
         </div>
 
         </div>
