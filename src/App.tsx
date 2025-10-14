@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import Login from './Pages/Login';
 import Navbar from './components/Navbar';
 import NavBarDsk from './components/NavbarDsk';
 import Feed from './Pages/Feed';
@@ -24,7 +24,7 @@ function App() {
           <Route path="/materias" element={<div>Página de Materias</div>} />
           <Route path="/perfil" element={<div>Página de Perfil</div>} />
           {/* ¡Nuevas rutas para login y registro*/}
-          <Route path="/login" element={<div>Página de Login</div>} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/registro" element={<div>Página de Registro</div>} />
         </Routes>
       </main>
