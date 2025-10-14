@@ -1,10 +1,10 @@
 import './App.css'
-
+import Login from './components/loginPage/Login'
 function App() {
     return(
-        <p>
-            <h1 className='bg-blue-500  sm:bg-red-500 hover:bg-yellow-100'>Hola Tailwind!</h1>
-        </p>
+        <>
+                <Login />
+        </>
     )
 }
 
