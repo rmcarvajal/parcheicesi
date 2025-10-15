@@ -1,4 +1,5 @@
 import { useState } from "react"
+import person from "../../assets/person-fill.svg"
 function Login(){
 const [showpass, setShowpass] = useState("password")
 
@@ -7,9 +8,13 @@ const [showpass, setShowpass] = useState("password")
 
         <div className="w-[301px] h-[542px] flex flex-col bg-white rounded-3xl p-5 justify-center items-center" >
 
-            <div className="w-[172px] h-[126px] bg-amber-300">IMAGE</div>
-            <div>
-                <input type="text" placeholder="Usuario." />
+            <img src="src\assets\LOGO grande.png" className="w-[172px] h-[126px]" />
+
+            <div className="w-[247px] h-[33px] bg-amber-600 flex rounded-l-xl">
+                <div className="w-[39px] h-[33px] bg-fuchsia-400 rounded-l-xl flex justify-center items-center">
+                    <img src={person} className="w-[20px] h-[20px]" />
+                </div>
+                <input type="text" placeholder="Usuario." className="pl-[13px]" />
             </div>
 
 
