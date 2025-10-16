@@ -1,8 +1,5 @@
 
-
 import logo from '../../assets/LOGO horizontal.png'; 
-
-
 
 function Header (){
 
