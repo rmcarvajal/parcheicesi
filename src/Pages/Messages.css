@@ -202,7 +202,7 @@
     .messages-container {
         /* Permite que los paneles se superpongan */
         position: relative;
-        height: calc(100vh - 56px);
+        height: 100vh;
         margin-top: 56px; 
     }
     
@@ -259,8 +259,35 @@
     }
 }
 
-@media (min-width: 769px) {
-    .chat-header .back-to-list-btn {
-        display: none;
-    }
+/* BUSCADOR */
+.search-bar {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  /* Para centrar el input */
+  display: flex; 
+  align-items: center;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem; /* Espacio para el icono a la izquierda */
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  background-color: #f3f4f6; 
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: #94a3b8; 
 }
