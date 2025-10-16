@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Login from './Pages/Login';
+import Login from './Pages/loginPage/Login.tsx';
+import Signup from './Pages/loginPage/signup.tsx';
 import Navbar from './components/Navbar';
 import NavBarDsk from './components/NavbarDsk';
 import Feed from './Pages/Feed';
@@ -25,7 +26,7 @@ function App() {
           <Route path="/perfil" element={<div>Página de Perfil</div>} />
           {/* ¡Nuevas rutas para login y registro*/}
           <Route path="/" element={<Login/>} />
-          <Route path="/registro" element={<div>Página de Registro</div>} />
+          <Route path="/registro" element={<Signup/>} />
         </Routes>
       </main>
       {dskSize? "": navBarMvl}
