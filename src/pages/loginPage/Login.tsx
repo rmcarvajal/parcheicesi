@@ -9,7 +9,7 @@ const [showpass, setShowpass] = useState("password")
     return(
     <div className="w-screen h-screen bg-brand flex justify-center items-center">
 
-        <div className="w-[301px] h-[542px] flex flex-col bg-white rounded-3xl p-2 justify-center items-center md:w-[449px] md:h-[572px]" >
+        <div className="w-[301px] h-[542px] flex flex-col bg-white rounded-3xl p-2 justify-center items-center md:w-[449px]" >
 
             <img src="src\assets\LOGO grande.png" className="w-[172px] h-[126px] mb-[30px]" />
 
@@ -17,7 +17,7 @@ const [showpass, setShowpass] = useState("password")
                 <div className="w-[39px] h-[33px] bg-brand rounded-l-xl flex justify-center items-center">
                     <img src={person} className="w-[20px] h-[20px]" />
                 </div>
-                <input type="text" placeholder="Usuario." className="pl-[13px]" />
+                <input type="text" placeholder="Usuario" className="pl-[13px]" />
             </div>
 
             <div className="w-[247px] h-[33px] bg-gray-100 flex items-center rounded-l-xl border-gray-400 border-y-2 border-r-2 mb-[33px]">
