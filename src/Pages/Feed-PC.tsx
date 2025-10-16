@@ -1,7 +1,7 @@
 import PostList from "../components/Feed-components/Post-List-Component"
 import FilterFeed from "../components/Feed-components/Filter-Feed-Component"
 import NavBarDsk from "../components/NavbarDsk"
-import PostForm from "../components/Feed-components/PostForm"
+
 
 function FeedPC(){
     return(

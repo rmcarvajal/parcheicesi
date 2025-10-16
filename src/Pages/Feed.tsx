@@ -1,5 +1,5 @@
 import PostList from "../components/Feed-components/Post-List-Component"
-import PostForm from "../components/Feed-components/PostForm"
+
 
 import HeaderFeed from "../components/navegation/HeaderFeed"
 
