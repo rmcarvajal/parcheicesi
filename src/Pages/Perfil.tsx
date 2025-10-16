@@ -1,26 +1,25 @@
 import React from "react";
-import FeedCard from "./Feed"; // reutilizamos el mismo del feed
+import { useNavigate } from "react-router-dom";
+import PostList from "../components/Feed-components/Post-List-Component";
 import { FaCog } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // importamos el hook de navegación
-
-interface FeedCardProps {
-  nombre: string;
-  tiempo: string;
-  imagen: string;
-  texto: string;
-  autor: string;
-}
 
 const Perfil: React.FC = () => {
-  const navigate = useNavigate(); // hook para manejar la navegación
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    console.log("Sesión cerrada");
+    navigate("/");
+  };
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white">
-      {/* ==================== Columna izquierda: Perfil ==================== */}
-      <div className="md:w-1/3 bg-[#6C63FF] text-white flex flex-col items-center py-10 relative">
+      
+      {/* ==================== Columna izquierda: Perfil (Estática) ==================== */}
+      <div className="md:w-1/3 bg-[#6C63FF] text-white flex flex-col items-center py-10 relative md:sticky md:top-0 md:h-screen">
+        
         {/* Botón de volver */}
         <button
-          onClick={() => navigate(-1)} // vuelve a la página anterior
+          onClick={() => navigate(-1)}
           className="absolute top-5 left-5 bg-white text-[#6C63FF] px-3 py-1 rounded shadow hover:bg-gray-100 transition"
         >
           Volver
@@ -44,7 +43,7 @@ const Perfil: React.FC = () => {
           Student of Interactive Media Design
         </p>
 
-        {/* Stats */}
+        {/* Stats del usuario */}
         <div className="flex justify-around w-full mt-6">
           <div className="text-center">
             <p className="text-lg font-semibold">6.2k</p>
@@ -59,6 +58,14 @@ const Perfil: React.FC = () => {
             <p className="text-xs text-white/80">Projects</p>
           </div>
         </div>
+
+        {/* Botón de cerrar sesión */}
+        <button
+          onClick={handleLogout}
+          className="mt-auto mb-5 bg-white text-[#6C63FF] px-6 py-2 rounded shadow hover:bg-gray-100 transition"
+        >
+          Cerrar sesión
+        </button>
       </div>
 
       {/* ==================== Columna derecha: Publicaciones ==================== */}
@@ -68,13 +75,7 @@ const Perfil: React.FC = () => {
         </h2>
 
         <div className="max-w-3xl">
-          <FeedCard
-            nombre="María Valeria"
-            tiempo="Hace 3 horas"
-            imagen="https://i.imgur.com/z8gqcg3.png"
-            texto="Detrás de cada prueba, de cada dato y cada resultado hay una pasión por comprender más. En el Día de las Lenguas Clásicas, celebramos la ciencia que nos conecta con un futuro más claro para todos."
-            autor="Laura Valentina Parra"
-          />
+          <PostList />
         </div>
       </div>
     </div>
