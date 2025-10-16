@@ -8,7 +8,7 @@ function FeedPC(){
     <div id="feed" className="flex flex-row w-full">
     <NavBarDsk/>
     <div className="flex flex-col w-full">
-    <div className="p-5 w-full">
+    <div className="p-5 w-full sticky top-0 bg-white z-10 shadow-sm shadow-black">
     <FilterFeed/>
     </div>
     <PostList/>
