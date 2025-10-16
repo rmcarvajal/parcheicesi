@@ -45,7 +45,7 @@ function Messages() {
 
   const ChatSidebar = () => (
     <div className={`chat-sidebar ${selectedChatId ? 'mobile-hide' : ''}`}>
-      <button className="back-btn" onClick={() => navigate('/')}>
+      <button className="back-btn" onClick={() => navigate('/feed')}>
         ← Volver a Inicio
       </button>
       <div className="search-bar">
