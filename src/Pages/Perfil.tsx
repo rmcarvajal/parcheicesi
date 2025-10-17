@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 // Importa React y hooks:
 // useState -> para manejar estados internos en el componente (como la foto del perfil)
 // useEffect -> para ejecutar efectos secundarios, como cargar datos desde una API
-
+import NavBar from "../components/Navbar";
 import { useNavigate } from "react-router-dom"; 
+import { useMediaQuery } from 'react-responsive';
 // Importa el hook de React Router que permite navegar programáticamente entre páginas
 
 import PostList from "../components/Feed-components/Post-List-Component"; 
@@ -49,11 +50,17 @@ const Perfil: React.FC = () => {
     navigate("/"); 
     // Redirige a la página principal ("/") después de cerrar sesión
   };
-
+  const dskSize = useMediaQuery({ minWidth: 768 });
+  const navBarMvl = (
+    <div className="fixed bottom-0 left-0 w-full z-50 bg-white">
+       <NavBar />
+   </div>
+  );
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-white">
+    
+    <div className="flex flex-col md:flex-row min-h-screen w-full overflow-x-hidden bg-white">
       {/* Contenedor principal: flex en columna en móvil, fila en desktop (md) */}
-      <div className="md:w-1/3 bg-[#6C63FF] text-white flex flex-col items-center py-10 relative md:sticky md:top-0 md:h-screen">
+      <div className=" md:w-screen md:min-w-20 md:max-w-120  bg-[#6C63FF] text-white flex flex-col items-center py-10 md:sticky md:top-0 md:h-screen">
         {/* Sidebar izquierdo con información del perfil */}
         <button
           onClick={() => navigate(-1)}
@@ -108,15 +115,20 @@ const Perfil: React.FC = () => {
         {/* Botón para cerrar sesión, siempre al final del sidebar gracias a mt-auto */}
       </div>
 
-      <div className="flex-1 bg-[#E6F5EE] p-6 md:p-10">
+      <div className="flex flex-col bg-white  md:p-10 pb-20 w-full md:w-2/3 md:pb-10">
         {/* Contenedor principal derecho donde van las publicaciones */}
-        <h2 className="text-2xl font-semibold text-[#1E1E1E] mb-6">
+        <h2 className="p-6 text-2xl font-semibold text-black mb-6">
           Publicaciones
         </h2>
-        <div className="max-w-3xl">
+        <div className=" md:max-w-3xl max-w-lg">
           <PostList />
         </div>
+        
+        
       </div>
+      
+      {/* Navbar móvil */}
+      {!dskSize && navBarMvl}
     </div>
   );
 };

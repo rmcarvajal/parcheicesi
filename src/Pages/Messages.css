@@ -12,6 +12,7 @@
   overflow: hidden;
   flex-direction: row; 
   width: 100%; 
+  
 }
 
 /* ------------------- ESTILOS GENERALES Y ESCRITORIO ------------------- */
@@ -215,7 +216,12 @@
   border-radius: 1.5rem;
   cursor: pointer;
   font-weight: 600;
+  
 }
+.input-bar {
+    bottom: 0;
+    z-index: 60;
+  }
 
 /* ------------------- REGLAS ESPECÍFICAS PARA VISTA MÓVIL (<= 768px) ------------------- */
 @media (max-width: 768px) {
@@ -223,7 +229,7 @@
     .messages-container {
         position: relative;
         /* ARREGLO 1: Ajusta la altura para eliminar el scroll bar no deseado y el espacio */
-        margin-top: 56px; 
+        margin-top: 0px; 
         height: calc(100vh - 56px);
         overflow: hidden; 
     }
@@ -244,6 +250,7 @@
     .chat-window {
         z-index: 20; 
         transform: translateX(100%);
+        padding-bottom: 30px;
     }
 
     /* ESTADOS DE TRANSICIÓN */

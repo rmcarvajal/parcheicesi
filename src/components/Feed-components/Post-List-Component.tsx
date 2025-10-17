@@ -12,7 +12,7 @@ function PostList (){
                 <h1 className="font-bold text-2xl">Ultimas publicaciones</h1>
                 <button
                     id="añadir-btn"
-                    className="text-brand font-bold bg-white rounded-2xl p-2 px-6 border-1 hover:bg-brand hover:text-white hover:border-brand cursor-pointer"
+                    className="text-brand font-bold bg-white rounded-2xl p-2 px-6 border-1 hover:bg-brand hover:text-white hover:border-brand cursor-pointer active:bg-brand active:text-white"
                     onClick={() => setShowForm(!showForm)}
                 >
                     + Añadir

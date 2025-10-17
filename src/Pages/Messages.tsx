@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Messages.css';
-
+import { useMediaQuery } from 'react-responsive';
+import NavBar from '../components/Navbar';  
 interface Chat {
   id: number;
   user: string;
@@ -23,6 +24,13 @@ const sampleChats: Chat[] = [
 ];
 
 function Messages() {
+  const dskSize = useMediaQuery({ minWidth: 768 });
+  const navBarMvl = (
+    <div className="fixed bottom-0 w-full z-50 bg-white">
+      <NavBar/>
+    </div>
+  );
+
   const navigate = useNavigate();
   const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
   const [newMessage, setNewMessage] = useState('');
@@ -44,6 +52,8 @@ function Messages() {
   };
 
   const ChatSidebar = () => (
+    
+
     <div className={`chat-sidebar ${selectedChatId ? 'mobile-hide' : ''}`}>
       <button className="back-btn" onClick={() => navigate('/feed')}>
         ← Volver a Inicio
@@ -112,6 +122,8 @@ function Messages() {
     <div className="messages-container">
       <ChatSidebar />
       {(selectedChat || selectedChatId === null) && <ChatWindow />}
+      {/* Navbar móvil */}
+        {!dskSize && navBarMvl}
     </div>
   );
 }
