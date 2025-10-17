@@ -28,20 +28,20 @@ const [showpass, setShowpass] = useState("password")
                 <input type={showpass} placeholder="Contraseña" className="pl-[13px] max-w-[180px]" />
 
                 
-            <img src={showpass ? shown : hidden} className="w-[20px] h-[20px]" onClick={() => setShowpass(textType => (textType === "text" ? "password" : "text"))}/>
+            <img src={showpass ? shown : hidden} className="w-[20px] h-[20px] cursor-pointer" onClick={() => setShowpass(textType => (textType === "text" ? "password" : "text"))}/>
             </div>
 
 
             <a href="" className="underline text-brand mb-[20px]">¿Olvidaste tu contraseña?</a>
 
             <NavLink to="/feed">
-                <button className="bg-brand text-white w-[120px] h-[41px] rounded-xl mb-[35px]">Iniciar sesion</button>
+                <button className="bg-brand text-white w-[120px] h-[41px] rounded-xl mb-[35px]  border-3 border-brand  hover:text-brand-light cursor-pointer">Iniciar sesion</button>
             </NavLink>
 
             <p className="text-gray-400 mb-[25px]">¿No tienes una cuenta?</p>
 
             <NavLink to="/registro">
-                <button className="bg-white text-brand w-[120px] h-[41px] rounded-xl border-3 border-brand">Registrate</button>                
+                <button className="bg-white text-brand w-[120px] h-[41px] rounded-xl border-3 border-brand hover:bg-brand-light cursor-pointer">Registrate</button>                
             </NavLink>
 
         </div>
