@@ -8,6 +8,7 @@ import Perfil from './Pages/Perfil.tsx'; // Importa tu componente real
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
 import Messages from './Pages/Messages.tsx';
+import Landing from './Pages/Landing.tsx';
 
 function App() {
   const dskSize = useMediaQuery({ minWidth: 768 });
@@ -18,9 +19,11 @@ function App() {
       <div className="h-screen w-screen bg-white">
         <main className="main-content">
           <Routes>
+            {/*Landing */}
+            <Route path="/" element={<Landing/>} />
 
             {/* Login y registro */}
-            <Route path="/" element={<Login />} />
+            <Route path="login" element={<Login />} />
             <Route path="/registro" element={<Signup />} />
 
             {/* Otras secciones */}

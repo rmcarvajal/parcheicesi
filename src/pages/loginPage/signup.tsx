@@ -29,7 +29,7 @@ const [showpass2, setShowpass2] = useState("password")
                 <input type={showpass1} placeholder="Contraseña" className="pl-[13px] max-w-[180px]" />
 
                 
-            <img src={showpass1 ? shown : hidden} className="w-[20px] h-[20px]" onClick={() => setShowpass1(textType => (textType === "text" ? "password" : "text"))}/>
+            <img src={showpass1 ? shown : hidden} className="w-[20px] h-[20px] cursor-pointer" onClick={() => setShowpass1(textType => (textType === "text" ? "password" : "text"))}/>
             </div>
 
 
@@ -40,17 +40,17 @@ const [showpass2, setShowpass2] = useState("password")
                 <input type={showpass2} placeholder="Contraseña" className="pl-[13px] max-w-[180px]" />
 
                 
-            <img src={showpass2 ? shown : hidden} className="w-[20px] h-[20px]" onClick={() => setShowpass2(textType => (textType === "text" ? "password" : "text"))}/>
+            <img src={showpass2 ? shown : hidden} className="w-[20px] h-[20px] cursor-pointer" onClick={() => setShowpass2(textType => (textType === "text" ? "password" : "text"))}/>
             </div>
             <NavLink to="/feed">
-                <button className="bg-brand text-white w-[120px] h-[41px] rounded-xl mb-[35px]">Registrate</button>                
+                <button className="bg-brand text-white w-[120px] h-[41px] rounded-xl border-3 border-brand mb-[35px] hover:text-brand-light cursor-pointer">Registrate</button>                
             </NavLink>
 
 
-            <p className="text-gray-400 mb-[25px]">¿No tienes una cuenta?</p>
+            <p className="text-gray-400 mb-[25px]">¿Ya tienes una cuenta?</p>
 
-            <NavLink to="/">
-                <button className="bg-white text-brand w-[120px] h-[41px] rounded-xl border-3 border-brand">Iniciar sesion</button>                
+            <NavLink to="/login">
+                <button className="bg-white text-brand w-[120px] h-[41px] rounded-xl border-3 border-brand hover:bg-brand-light cursor-pointer">Iniciar sesion</button>                
             </NavLink>
 
         </div>
