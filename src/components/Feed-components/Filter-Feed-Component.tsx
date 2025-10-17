@@ -1,5 +1,4 @@
 
-
 function FilterFeed (){
     const filterBtn = "bg-secondary text-white rounded-md cursor-pointer p-1 hover:bg-green-900 active:bg-green-900 transition px-4 md:w-full md:py-2 md:mx-2 "
     return(

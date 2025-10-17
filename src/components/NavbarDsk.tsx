@@ -11,7 +11,7 @@ function NavBarDsk() {
         React Router proporciona la interfaz 'NavLinkRenderProps' implícitamente.
       */}
       <NavLink 
-        to="/" 
+        to="/feed" 
         className="text-brand font-bold text-2xl w-fit my-1 hover:pl-1.5 hover:pr-5.5 hover:bg-orange hover:text-white ease-in transition-transform hover:translate-x-2"
         >
         Inicio
