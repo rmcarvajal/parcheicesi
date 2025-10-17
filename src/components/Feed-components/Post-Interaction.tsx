@@ -40,8 +40,8 @@ function PostInteractions () {
             </div>
             <div className="flex justify-around">
                 <button className={btnEffects + btnState} onClick={handleLike}>{liked ? "Liked" : "Like"}</button>
-                <button className={btnEffects}>Comment</button>
-                <button className={btnEffects}>Share</button>
+                <button className={btnEffects}>Commentar</button>
+                <button className={btnEffects}>Compartir</button>
             </div>
         </div>
     );

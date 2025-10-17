@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function NavBarDsk() {
   return (
-    <div id='navbar-container' className='flex flex-col min-w-20 h-screen p-7.5 bg-white'>
+    <div id='navbar-container' className='flex flex-col min-w-20 h-screen fi p-7.5 bg-white sticky top-0 border-r-2 border-white gap-10 items-center'>
         <img src='src\Assets\LOGO horizontal.png' className='h-22 w-auto object-contain mb-8'></img>
         <nav id="nav-bar" className='flex flex-col w-full justify-around '>
       

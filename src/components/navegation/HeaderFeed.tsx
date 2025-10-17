@@ -27,6 +27,7 @@ function HeaderFeed (){
           </button>
         </div>
       </div>
+      
       <FilterFeed/>
     </header>
   );

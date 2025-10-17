@@ -1,38 +1,46 @@
-import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
-import Login from './Pages/Login';
-import Navbar from './components/Navbar';
-import NavBarDsk from './components/NavbarDsk';
+import Login from './Pages/loginPage/Login.tsx';
+import Signup from './Pages/loginPage/signup.tsx';
 import Feed from './Pages/Feed';
 import FeedPC from './Pages/Feed-PC';
-import Messages from './Pages/Messages';
+import Perfil from './Pages/Perfil.tsx'; // Importa tu componente real
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
+import Messages from './Pages/Messages.tsx';
 
 function App() {
-  const dskSize = useMediaQuery({minWidth: 768})
-  const navBarMvl = <div className=' fixed bottom-0 w-full z-5 bg-white'><Navbar/>  </div>
+  const dskSize = useMediaQuery({ minWidth: 768 });
+
+
   return (
-    <div id='app' className="app">
-      <div className=' min-w-screen'>
-      
-      <main className="main-content">
-        <Routes>
-          {/* Rutas existentes*/}
-          <Route path="feed" element={dskSize? <FeedPC/> : <Feed/> } />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/materias" element={<div>Página de Materias</div>} />
-          <Route path="/perfil" element={<div>Página de Perfil</div>} />
-          {/* ¡Nuevas rutas para login y registro*/}
-          <Route path="/" element={<Login/>} />
-          <Route path="/registro" element={<div>Página de Registro</div>} />
-        </Routes>
-      </main>
-      {dskSize? "": navBarMvl}
-      
-    </div>
+    <div id="app" className="app">
+      <div className="h-screen w-screen bg-white">
+        <main className="main-content">
+          <Routes>
+
+            {/* Login y registro */}
+            <Route path="/" element={<Login />} />
+            <Route path="/registro" element={<Signup />} />
+
+            {/* Otras secciones */}
+            <Route path="/feed" element={dskSize ? <FeedPC /> : <Feed />} />
+            <Route path="/messages" element={<Messages/>} />
+            <Route path="/materias" element={<div>Página de Materias</div>} />
+
+            {/* Perfil real */}
+            <Route path="/perfil" element={<Perfil />} />
+
+            {/* Ruta fallback */}
+            <Route path="*" element={<div>Página no encontrada</div>} />
+          </Routes>
+        </main>
+
+        
+      </div>
     </div>
   );
 }
 
 export default App;
+            

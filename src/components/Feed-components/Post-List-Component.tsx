@@ -7,12 +7,12 @@ function PostList (){
     const [showForm, setShowForm] = useState(false)
 
     return(
-        <div id="post-list-container" className="flex flex-col items-center gap-2.5 px-4 py-30 h-fit w-screen md:w-full md:py-5 md:inset-shadow-sm md:inset-shadow-black bg-gradient-to-b from-brand-light to-white">
+        <div id="post-list-container" className="flex flex-col items-center gap-2.5 px-4 py-30 h-fit w-screen md:w-full md:py-5  md:inset-shadow-sm md:inset-shadow-black bg-gradient-to-b from-brand-light to-white">
             <div id="post-list-header" className="flex flex-row justify-between max-w-100 w-full">
                 <h1 className="font-bold text-2xl">Ultimas publicaciones</h1>
                 <button
                     id="añadir-btn"
-                    className="text-brand font-bold bg-white rounded-2xl p-2 px-6 border-1 hover:bg-brand hover:text-white hover:border-brand cursor-pointer"
+                    className="text-brand font-bold bg-white rounded-2xl p-2 px-6 border-1 hover:bg-brand hover:text-white hover:border-brand cursor-pointer active:bg-brand active:text-white"
                     onClick={() => setShowForm(!showForm)}
                 >
                     + Añadir
@@ -32,6 +32,7 @@ function PostList (){
                     />
                 ))}
             </div>
+            <h3 className="my-10">No hay mas posts...</h3>
         </div>
     )
 }
