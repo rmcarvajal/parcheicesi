@@ -61,7 +61,7 @@ function PostForm({ onSubmit }: PostFormProps) {
       )}
       <button
         type="submit"
-        className="bg-brand text-white font-bold py-2 rounded-xl hover:bg-brand-dark transition"
+        className="bg-brand text-white font-bold py-2 rounded-xl hover:bg-brand-dark transition disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={!text && !image}
       >
         Publicar

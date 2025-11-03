@@ -21,8 +21,10 @@ interface PostCompProps{
 
 function PostComponent({user, pic, time, text, img, cat, likes = 0, commentsList = []}:PostCompProps){
   const [expanded, setExpanded] = useState(false);
+  const [expandedImage, setExpandedImage] = useState(false);
 
   const handleToggle = () => setExpanded(prev => !prev);
+  const handleImageToggle = () => setExpandedImage(prev => !prev);
   const handleKey = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -31,7 +33,7 @@ function PostComponent({user, pic, time, text, img, cat, likes = 0, commentsList
   };
 
   return(
-    <div id="post-component" className="flex flex-col w-full min-h-100 bg-white gap-3.5 p-2.5 border-black border-2 rounded-2xl">
+    <div id="post-component" className="flex flex-col w-full h-hug bg-white gap-3.5 p-2.5 border-black border-2 rounded-2xl">
       <div className="flex flex-row gap-2.5">
         <img src={pic} className="w-13 h-13 rounded-full object-cover" alt={`${user} perfil`} />
         <div className="flex flex-col gap-1">
@@ -41,7 +43,7 @@ function PostComponent({user, pic, time, text, img, cat, likes = 0, commentsList
       </div>
 
       <p
-        className={`font-light text-sm ${expanded ? "" : "line-clamp-2"} cursor-pointer`}
+        className={`font-light ${!img ? 'text-base md:text-xl' : 'text-sm'} ${expanded ? "" : "line-clamp-2"} cursor-pointer`}
         onClick={handleToggle}
         onKeyDown={handleKey}
         role="button"
@@ -52,8 +54,13 @@ function PostComponent({user, pic, time, text, img, cat, likes = 0, commentsList
       </p>
 
       {img && (
-        <div className="flex h-74 overflow-hidden align-middle rounded-2xl object-center focus:h-fit">
-          <img className="w-full object-cover" src={img} alt="Post image" />
+        <div className={`flex align-middle rounded-2xl transition-all duration-300 ${expandedImage ? '' : 'h-74 overflow-hidden'}`}>
+          <img 
+            className="w-full object-cover cursor-pointer rounded-2xl" 
+            src={img} 
+            alt="Post image" 
+            onClick={handleImageToggle}
+          />
         </div>
       )}
 
