@@ -1,33 +1,39 @@
-import { useState } from "react";
-import PostComponent from "./Post-Component";
-import data from "./FeedData.json";
-import PostForm from "./PostForm";
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../app/store';
+import { addPost, Post } from '../features/postSlice';
+import { v4 as uuidv4 } from 'uuid';
+import PostComponent from './Post-Component';
+import PostForm from './PostForm';
 
 function PostList() {
-  const [posts, setPosts] = useState<any[]>(data);
+  const posts = useSelector((state: RootState) => state.posts.posts);
+  const dispatch = useDispatch<AppDispatch>();
   const [showForm, setShowForm] = useState(false);
 
   const handleNewPost = (postData: { text: string; image: File | null }) => {
     if (!postData.text && !postData.image) return;
 
-    const newPost = {
-      id: posts.length + 1,
-      user: "Usuario Actual", // Esto debería venir de tu sistema de autenticación
-      profilePic: "src/Assets/default-profile.jpg", // Imagen por defecto
+    const newPost: Post = {
+      id: uuidv4(),
+      user: "Usuario Actual",
+      profilePic: "src/Assets/default-profile.jpg",
       time: 0,
       text: postData.text || "",
       image: postData.image ? URL.createObjectURL(postData.image) : "",
       likes: 0,
-      comments: 0,
+      commentsList: [],
       category: "",
-      commentsList: []
+      liked: false,
     };
 
-    setPosts([newPost, ...posts]); // Añade el nuevo post al principio
-    setShowForm(false); // Cierra el formulario
+    dispatch(addPost(newPost));
+    setShowForm(false);
   };
 
-  return(
+  // initial posts are seeded in the Redux slice at store initialization
+
+  return (
     <div id="post-list-container" className="flex flex-col items-center gap-2.5 px-4 py-8 min-h-screen w-full bg-gradient-to-b from-brand-light to-white">
       <div id="post-list-header" className="flex flex-row justify-between max-w-100 w-full px-2">
         <h1 className="font-bold text-2xl">Ultimas publicaciones</h1>
@@ -46,11 +52,12 @@ function PostList() {
         {posts.map((p) => (
           <PostComponent
             key={p.id}
+            id={p.id}
             user={p.user}
-            pic={p.profilePic}
-            time={p.time}
-            text={p.text}
-            img={p.image}
+            pic={p.profilePic || ''}
+            time={p.time || 0}
+            text={p.text || ''}
+            img={p.image || ''}
             cat={p.category}
             likes={p.likes}
             commentsList={p.commentsList}

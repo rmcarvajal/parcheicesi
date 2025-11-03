@@ -1,31 +1,27 @@
-import { useState } from "react";
+import { useState, type KeyboardEvent } from "react";
 import PostInteractions from "./Post-Interaction";
 import CommentList from "./CommentList";
+import { Comment as CommentType } from "../features/postSlice";
 
-
-interface Comment {
-  user: string;
-  text: string;
-}
-
-interface PostCompProps{
+interface PostCompProps {
+  id: string;
   user: string;
   pic: string;
   time: number;
   text: string;
   img: string;
   cat?: string;
-  likes?: number;
-  commentsList?: Comment[];
+  likes: number;
+  commentsList: CommentType[];
 }
 
-function PostComponent({user, pic, time, text, img, cat, likes = 0, commentsList = []}:PostCompProps){
+function PostComponent({id, user, pic, time, text, img, likes = 0, commentsList = []}: PostCompProps) {
   const [expanded, setExpanded] = useState(false);
   const [expandedImage, setExpandedImage] = useState(false);
 
   const handleToggle = () => setExpanded(prev => !prev);
   const handleImageToggle = () => setExpandedImage(prev => !prev);
-  const handleKey = (e: React.KeyboardEvent) => {
+  const handleKey = (e: KeyboardEvent<HTMLParagraphElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       setExpanded(prev => !prev);
@@ -64,7 +60,11 @@ function PostComponent({user, pic, time, text, img, cat, likes = 0, commentsList
         </div>
       )}
 
-      <PostInteractions initialLikes={likes} initialComments={commentsList} />
+      <PostInteractions 
+        postId={id}
+        initialLikes={likes}
+        initialComments={commentsList}
+      />
     </div>
   )
 }
