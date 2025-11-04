@@ -121,7 +121,7 @@ const Perfil: React.FC = () => {
           Publicaciones
         </h2>
         <div className="md:overflow-y-scroll s md:max-w-3xl max-w-lg">
-          <PostList />
+          <PostList userFilter="Usuario Actual" />
         </div>
         
         

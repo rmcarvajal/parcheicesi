@@ -6,8 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 import PostComponent from './Post-Component';
 import PostForm from './PostForm';
 
-function PostList() {
-  const posts = useSelector((state: RootState) => state.posts.posts);
+interface PostListProps {
+  userFilter?: string;
+}
+
+function PostList({ userFilter }: PostListProps) {
+  const postsAll = useSelector((state: RootState) => state.posts.posts);
+  const posts = userFilter ? postsAll.filter(p => p.user === userFilter) : postsAll;
   const dispatch = useDispatch<AppDispatch>();
   const [showForm, setShowForm] = useState(false);
 
@@ -16,7 +21,7 @@ function PostList() {
 
     const newPost: Post = {
       id: uuidv4(),
-      user: "Usuario Actual",
+      user: userFilter || "Usuario Actual",
       profilePic: "src/Assets/default-profile.jpg",
       time: 0,
       text: postData.text || "",
