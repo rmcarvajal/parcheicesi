@@ -18,6 +18,13 @@ const Perfil: React.FC = () => {
 
   // Estado para la URL del avatar
   const [avatarUrl, setAvatarUrl] = useState<string>("");
+  
+  // Estados para el modal de edición
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [nombre, setNombre] = useState("Jose María");
+  const [ocupacion, setOcupacion] = useState("Student of Interactive Media Design");
+  const [nuevaContrasena, setNuevaContrasena] = useState("");
+  const [confirmarContrasena, setConfirmarContrasena] = useState("");
 
   // Detectar si estamos en pantalla de escritorio
   const dskSize = useMediaQuery({ minWidth: 768 });
@@ -50,6 +57,31 @@ const Perfil: React.FC = () => {
     navigate("/login");
   };
 
+  // Función para guardar cambios del perfil
+  const handleSaveChanges = () => {
+    if (nuevaContrasena && nuevaContrasena !== confirmarContrasena) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+    
+    // Aquí guardarías los cambios en tu backend
+    console.log("Guardando cambios:", { nombre, ocupacion, nuevaContrasena });
+    
+    // Cerrar modal
+    setShowEditModal(false);
+    
+    // Limpiar contraseñas
+    setNuevaContrasena("");
+    setConfirmarContrasena("");
+  };
+
+  // Función para cancelar edición
+  const handleCancelEdit = () => {
+    setShowEditModal(false);
+    setNuevaContrasena("");
+    setConfirmarContrasena("");
+  };
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen h-full w-full overflow-hidden bg-white">
       {/* Sidebar izquierdo */}
@@ -76,13 +108,12 @@ const Perfil: React.FC = () => {
         />
 
         {/* Nombre y descripción */}
-        <h2 className="mt-4 text-xl font-semibold">Jose María</h2>
-        <p className="text-sm text-white/80">Student of Interactive Media Design</p>
+        <h2 className="mt-4 text-xl font-semibold">{nombre}</h2>
+        <p className="text-sm text-white/80">{ocupacion}</p>
 
         {/* Botón para Editar perfil */}
         <button
-          onClick={() => navigate("/editar-perfil")}
-          // Cambiar "/editar-perfil" a la ruta real de tu página de edición
+          onClick={() => setShowEditModal(true)}
           className="mt-4 bg-white text-brand border-2 border-brand font-medium px-6 py-2 rounded shadow hover:bg-brand hover:text-white transition hover:border-white cursor-pointer"
         >
           Editar perfil
@@ -125,6 +156,79 @@ const Perfil: React.FC = () => {
 
       {/* Navbar móvil */}
       {!dskSize && navBarMvl}
+
+      {/* Modal de Edición de Perfil */}
+      {showEditModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
+            <h2 className="text-2xl font-bold text-brand mb-6">Editar Perfil</h2>
+            
+            {/* Campo Nombre */}
+            <div className="mb-4">
+              <label className="block text-gray-700 font-semibold mb-2">Nombre</label>
+              <input
+                type="text"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-brand focus:outline-none"
+                placeholder="Tu nombre"
+              />
+            </div>
+
+            {/* Campo Ocupación */}
+            <div className="mb-4">
+              <label className="block text-gray-700 font-semibold mb-2">Ocupación</label>
+              <input
+                type="text"
+                value={ocupacion}
+                onChange={(e) => setOcupacion(e.target.value)}
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-brand focus:outline-none"
+                placeholder="Tu ocupación"
+              />
+            </div>
+
+            {/* Campo Nueva Contraseña */}
+            <div className="mb-4">
+              <label className="block text-gray-700 font-semibold mb-2">Nueva Contraseña</label>
+              <input
+                type="password"
+                value={nuevaContrasena}
+                onChange={(e) => setNuevaContrasena(e.target.value)}
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-brand focus:outline-none"
+                placeholder="Dejar vacío para no cambiar"
+              />
+            </div>
+
+            {/* Campo Confirmar Contraseña */}
+            <div className="mb-6">
+              <label className="block text-gray-700 font-semibold mb-2">Confirmar Contraseña</label>
+              <input
+                type="password"
+                value={confirmarContrasena}
+                onChange={(e) => setConfirmarContrasena(e.target.value)}
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-brand focus:outline-none"
+                placeholder="Confirmar nueva contraseña"
+              />
+            </div>
+
+            {/* Botones de acción */}
+            <div className="flex gap-3">
+              <button
+                onClick={handleCancelEdit}
+                className="flex-1 bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-400 transition"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleSaveChanges}
+                className="flex-1 bg-brand text-white font-semibold py-2 px-4 rounded-lg hover:bg-brand/90 transition"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
