@@ -76,7 +76,7 @@ const Perfil: React.FC = () => {
         />
 
         {/* Nombre y descripción */}
-        <h2 className="mt-4 text-xl font-semibold">Jose María</h2>
+        <h2 className="mt-4 text-xl font-semibold">Usuario actual</h2>
         <p className="text-sm text-white/80">Student of Interactive Media Design</p>
 
         {/* Botón para Editar perfil */}
