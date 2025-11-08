@@ -44,7 +44,7 @@ const authSlice = createSlice({
             
             state.isAuthenticated = true;
             state.user = newUser;
-            state.users.push(newUser); // Añadir al "JSON"
+            state.users.push(newUser); 
         },
         
         // Reducer para el Login 
