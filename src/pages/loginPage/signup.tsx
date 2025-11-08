@@ -6,7 +6,6 @@ import emailIcon from "../../assets/email.svg"
 import lock from "../../assets/lock.svg"
 import hidden from "../../assets/hidden.svg"
 import shown from "../../assets/shown.svg"
-import './Login.css'; 
 
 
 function Signup(){
@@ -16,11 +15,9 @@ function Signup(){
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
 
-    // Estados para mostrar/ocultar contraseña 
     const [showpass1, setShowpass1] = useState<string>("password");
     const [showpass2, setShowpass2] = useState<string>("password");
     
-    // Hooks de Redux y Router
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
