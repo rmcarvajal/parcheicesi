@@ -5,6 +5,7 @@ import { addPost, Post } from '../features/postSlice';
 import { v4 as uuidv4 } from 'uuid';
 import PostComponent from './Post-Component';
 import PostForm from './PostForm';
+import { persistor } from '../app/store';
 
 interface PostListProps {
   userFilter?: string;
@@ -18,6 +19,7 @@ function PostList({ userFilter }: PostListProps) {
 
   const handleNewPost = (postData: { text: string; image: File | null }) => {
     if (!postData.text && !postData.image) return;
+    
 
     const newPost: Post = {
       id: uuidv4(),
@@ -35,6 +37,12 @@ function PostList({ userFilter }: PostListProps) {
     dispatch(addPost(newPost));
     setShowForm(false);
   };
+  const handleClear = () => {
+    if (confirm("¿Seguro que quieres borrar todas las publicaciones?")) {
+      persistor.purge(); // 🔥 Limpia todo lo guardado en localStorage
+      window.location.reload(); // Opcional: recarga la página para reflejar los cambios
+    }
+  };
 
   // initial posts are seeded in the Redux slice at store initialization
 
@@ -49,6 +57,12 @@ function PostList({ userFilter }: PostListProps) {
         >
           + Añadir
         </button>
+        <button
+      onClick={handleClear}
+      className="bg-red-500 text-white mx-5 h-10 w-10 self-center h-hug rounded-3xl hover:bg-red-600"
+    >
+      R
+    </button>
       </div>
 
       {showForm && <PostForm onSubmit={handleNewPost} />}
