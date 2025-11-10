@@ -1,4 +1,3 @@
-
 import { Routes, Route } from 'react-router-dom';
 import Login from './Pages/loginPage/Login.tsx';
 import Signup from './Pages/loginPage/signup.tsx';

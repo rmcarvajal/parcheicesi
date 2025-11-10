@@ -1,6 +1,7 @@
 // app/store.ts
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import postsReducer from '../features/postSlice';
+import authReducer from '../features/authSlice';
 import {
   persistStore,
   persistReducer,
@@ -16,6 +17,7 @@ import storage from 'redux-persist/lib/storage'; // Usa localStorage por defecto
 // Combina tus reducers
 const rootReducer = combineReducers({
   posts: postsReducer,
+  auth: authReducer,
 });
 
 // Configuración de persistencia
@@ -23,6 +25,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  whitelist: ['auth'],
 };
 
 // Crea un reducer persistente
