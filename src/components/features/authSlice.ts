@@ -1,48 +1,69 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface User {
+interface User {
   username: string;
   email: string;
-  password?: string; 
+  password: string;
+  profilePic?: string;
+  occupation?: string;
 }
 
 interface AuthState {
-  isAuthenticated: boolean;
   user: User | null;
-  users: User[]; 
+  users: User[];
 }
 
+const savedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+const savedUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+
 const initialState: AuthState = {
-  isAuthenticated: false,
-  user: null,
-  users: [],
+  user: savedUser,
+  users: savedUsers,
 };
 
-export const authSlice = createSlice({
-  name: 'auth',
+const authSlice = createSlice({
+  name: "auth",
   initialState,
   reducers: {
-    registerUser: (state, action: PayloadAction<User>) => {
-      // Verifica si el usuario ya existe 
-      const exists = state.users.some(u => u.username === action.payload.username || u.email === action.payload.email);
-      if (!exists) {
-        state.users.push(action.payload);
+      registerUser: (state, action: PayloadAction<User>) => {
+      const user = action.payload;
+      const exists = state.users.find(
+        (u) => u.email === user.email || u.username === user.username
+      );
+      if (exists) return; // 🔹 ya manejamos el error en Signup.tsx
+
+      state.users.push(user);
+      state.user = user;
+      localStorage.setItem("users", JSON.stringify(state.users));
+      localStorage.setItem("currentUser", JSON.stringify(user));
+    },
+
+
+    login: (state, action: PayloadAction<{ email: string; password: string }>) => {
+      const { email, password } = action.payload;
+      const user = state.users.find(
+        (u) => (u.email === email || u.username === email) && u.password === password
+      );
+      if (user) {
+        state.user = user;
+        localStorage.setItem("currentUser", JSON.stringify(user));
       }
     },
-
-    loginUser: (state, action: PayloadAction<User>) => {
-      const { password, ...userData } = action.payload; 
-      state.isAuthenticated = true;
-      state.user = userData as User; 
-    },
-
-    // LOGOUT
-    logoutUser: (state) => {
-      state.isAuthenticated = false;
+    logout: (state) => {
       state.user = null;
+      localStorage.removeItem("currentUser");
+    },
+    updateUser: (state, action: PayloadAction<Partial<User>>) => {
+      if (state.user) {
+        state.user = { ...state.user, ...action.payload };
+        const idx = state.users.findIndex((u) => u.email === state.user?.email);
+        if (idx !== -1) state.users[idx] = state.user;
+        localStorage.setItem("users", JSON.stringify(state.users));
+        localStorage.setItem("currentUser", JSON.stringify(state.user));
+      }
     },
   },
 });
 
-export const { registerUser, loginUser, logoutUser } = authSlice.actions;
+export const { registerUser, login, logout, updateUser } = authSlice.actions;
 export default authSlice.reducer;

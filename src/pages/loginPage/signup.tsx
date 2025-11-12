@@ -22,32 +22,44 @@ function Signup(){
     const navigate = useNavigate();
 
     const handleRegister = (e: React.FormEvent) => {
-        e.preventDefault(); // Prevenir el recargo de la página
+  e.preventDefault(); 
+  setError('');
 
-        setError(''); // Limpiar errores previos
+  // Validaciones básicas
+  if (!username || !email || !password || !confirmPassword) {
+    setError('Por favor, rellena todos los campos.');
+    return;
+  }
 
-        // Validaciones
-        if (!username || !email || !password || !confirmPassword) {
-            setError('Por favor, rellena todos los campos.');
-            return;
-        }
+  if (password !== confirmPassword) {
+    setError('Las contraseñas no coinciden.');
+    return;
+  }
 
-        if (password !== confirmPassword) {
-            setError('Las contraseñas no coinciden.');
-            return;
-        }
+  // Datos del usuario
+  const userData = {
+    username,
+    email,
+    password,
+  };
 
-        // Creación del objeto de datos para la acción
-        const userData = {
-            username,
-            email,
-            password,
-        };
+  // 🔹 Comprobar si el usuario ya existe antes de despachar
+  const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+  const exists = existingUsers.find(
+    (u: any) => u.email === email || u.username === username
+  );
 
-        dispatch(registerUser(userData));
+  if (exists) {
+    setError('⚠️ Este correo o nombre de usuario ya está registrado.');
+    return; // 🚫 Detiene el registro
+  }
 
-        navigate('/feed'); 
-    };
+  // 🔹 Registrar usuario
+  dispatch(registerUser(userData));
+
+  // ✅ Solo si no hubo errores, navegar al feed
+  navigate('/feed'); 
+};
 
     return(
         <div className="w-screen h-screen bg-brand flex justify-center items-center p-4 login-fullscreen-overlay">

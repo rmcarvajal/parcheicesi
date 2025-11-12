@@ -13,31 +13,38 @@ interface PostInteractionsProps {
 
 function PostInteractions({ postId, initialLikes = 0, initialComments = [] }: PostInteractionsProps) {
   const dispatch = useDispatch<AppDispatch>();
-  const post = useSelector((state: RootState) => 
-    state.posts.posts.find(p => p.id === postId)
+
+  const post = useSelector((state: RootState) =>
+    state.posts.posts.find((p) => p.id === postId)
   );
-  
+  const currentUser = useSelector((state: RootState) => state.auth.user);
+
   const [showCommentBox, setShowCommentBox] = useState(false);
   const [newComment, setNewComment] = useState("");
-  
-  // Use Redux state instead of local state
+
   const likes = post?.likes ?? initialLikes;
   const comments = post?.commentsList ?? initialComments;
-  const liked = post?.liked ?? false;
+  const likedBy = post?.likedBy ?? [];
+  const liked = currentUser ? likedBy.includes(currentUser.username) : false;
 
   const handleLike = () => {
-    dispatch(toggleLike(postId));
+    if (!currentUser) {
+      alert("Debes iniciar sesión para dar like.");
+      return;
+    }
+
+    dispatch(toggleLike({ postId, username: currentUser.username }));
   };
 
   const handleAddComment = (e?: React.FormEvent) => {
     e?.preventDefault();
     const text = newComment.trim();
-    if (!text) return;
-    
+    if (!text || !currentUser) return;
+
     const comment: CommentType = {
       id: uuidv4(),
-      user: "Usuario Actual",
-      text
+      user: currentUser.username,
+      text,
     };
 
     dispatch(addComment({ postId, comment }));

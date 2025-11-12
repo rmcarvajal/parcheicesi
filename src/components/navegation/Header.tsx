@@ -1,7 +1,10 @@
 
 import logo from '../../assets/LOGO horizontal.png'; 
+import { RootState } from "../app/store";
+import { useSelector } from "react-redux";
 
 function Header (){
+const currentUser = useSelector((state: RootState) => state.auth.user);
 
   return (
     <header id='header' className="flex flex-col w-screen bg-white px-5 py-2.5 gap-2.5 shadow-black shadow-sm fixed">
@@ -9,6 +12,9 @@ function Header (){
         <div className="header-left">
           <img id='logo' src={logo} alt="Parche ICESI" className="h-11" />
         </div>
+        <h2 className="text-xl font-semibold">
+          {currentUser ? currentUser.username : "Usuario"}
+        </h2>
         <div id='header-actions' className="flex flex-row gap-4">
           <button id='icon-btn' className="size-fit" aria-label="Configuración">
             <svg id='settings' xmlns="http://www.w3.org/2000/svg"  className="size-9 fill-brand" viewBox="0 0 16 16">

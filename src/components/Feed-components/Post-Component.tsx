@@ -2,6 +2,7 @@ import { useState, type KeyboardEvent } from "react";
 import PostInteractions from "./Post-Interaction";
 import CommentList from "./CommentList";
 import { Comment as CommentType } from "../features/postSlice";
+import { timeAgo } from "../../utils/time";
 
 interface PostCompProps {
   id: string;
@@ -34,7 +35,7 @@ function PostComponent({id, user, pic, time, text, img, likes = 0, commentsList 
         <img src={pic} className="w-13 h-13 rounded-full object-cover" alt={`${user} perfil`} />
         <div className="flex flex-col gap-1">
           <h3 className="font-bold text-2xl text-brand">{user}</h3>
-          <p className="font-light text-sm">Hace {time} horas</p>
+          <p className="font-light text-sm"> {time ? timeAgo(time) : ''} </p>
         </div>
       </div>
 

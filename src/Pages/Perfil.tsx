@@ -1,56 +1,46 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import PostList from "../components/Feed-components/Post-List-Component";
-import { FaCog } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout, updateUser } from "../components/features/authSlice";
+import { updateUserPosts } from "../components/features/postSlice";
+
+import {persistor} from "../components/app/store";
+import { RootState } from "../components/app/store"; // ajusta la ruta si tu store está en otro lugar
+
+const DEFAULT_PROFILE_IMAGE =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1024px-Default_pfp.svg.png";
 
 const Perfil: React.FC = () => {
   const navigate = useNavigate();
+  const dskSize = useMediaQuery({ minWidth: 768 });
 
-  const [avatarUrl, setAvatarUrl] = useState<string>("");
+  // Obtener usuario logeado desde Redux (o localStorage si no usas Redux)
+  
+  const currentUser = useSelector((state: RootState) => state.auth.user)
+
+  const [avatarUrl, setAvatarUrl] = useState<string>(
+    currentUser?.profilePic || DEFAULT_PROFILE_IMAGE
+  );
+  const [nombre, setNombre] = useState<string>(currentUser?.username || "Usuario");
+  const [ocupacion, setOcupacion] = useState<string>(
+    currentUser?.occupation || "Estudiante de Diseño de Medios Interactivos"
+  );
   const [showEditModal, setShowEditModal] = useState(false);
-  const [nombre, setNombre] = useState("Jose María");
-  const [ocupacion, setOcupacion] = useState("Student of Interactive Media Design");
   const [nuevaContrasena, setNuevaContrasena] = useState("");
   const [confirmarContrasena, setConfirmarContrasena] = useState("");
 
-  const dskSize = useMediaQuery({ minWidth: 768 });
-
-  // Navbar móvil (definido antes del return)
+  // Navbar móvil
   const navBarMvl = (
     <div className="fixed bottom-0 left-0 w-full z-50 bg-white">
       <NavBar />
     </div>
   );
 
-  // Cargar datos guardados en localStorage al montar
-  useEffect(() => {
-    try {
-      const savedNombre = localStorage.getItem("perfil_nombre");
-      const savedOcupacion = localStorage.getItem("perfil_ocupacion");
-      const savedFoto = localStorage.getItem("perfil_foto");
-
-      if (savedNombre) setNombre(savedNombre);
-      if (savedOcupacion) setOcupacion(savedOcupacion);
-      if (savedFoto) setAvatarUrl(savedFoto);
-    } catch (err) {
-      console.warn("localStorage not available", err);
-    }
-  }, []);
-
-  // Guardar cambios en localStorage
-  useEffect(() => {
-    try {
-      localStorage.setItem("perfil_nombre", nombre);
-      localStorage.setItem("perfil_ocupacion", ocupacion);
-      localStorage.setItem("perfil_foto", avatarUrl);
-    } catch (err) {
-      console.warn("Could not persist profile to localStorage", err);
-    }
-  }, [nombre, ocupacion, avatarUrl]);
-
-  // Manejar cambio de foto
+  // Manejar cambio de foto (base64)
   const handleChangePhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -64,22 +54,52 @@ const Perfil: React.FC = () => {
   };
 
   const handleLogout = () => {
-    console.log("Sesión cerrada");
-    navigate("/login");
-  };
+  dispatch(logout()); // 🔹 Limpia el usuario del estado
+  persistor.flush(); // 🔹 Asegura que el cambio se guarde
+  navigate("/login"); // 🔹 Redirige al login
+};
 
   const handleSaveChanges = () => {
-    if (nuevaContrasena && nuevaContrasena !== confirmarContrasena) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
+  if (nuevaContrasena && nuevaContrasena !== confirmarContrasena) {
+    alert("Las contraseñas no coinciden");
+    return;
+  }
 
-    console.log("Guardando cambios:", { nombre, ocupacion, nuevaContrasena });
+  if (!currentUser) return;
 
-    setShowEditModal(false);
-    setNuevaContrasena("");
-    setConfirmarContrasena("");
-  };
+  // 🔹 Guardar los valores antiguos y nuevos
+  const oldUsername = currentUser.username;
+  const newProfilePic = avatarUrl;
+  const newUsername = nombre;
+
+  // 🔹 Actualizar usuario en auth
+  dispatch(updateUser({
+    username: newUsername,
+    occupation: ocupacion,
+    profilePic: newProfilePic,
+    ...(nuevaContrasena ? { password: nuevaContrasena } : {}),
+  }));
+
+  // 🔹 Actualizar los posts del usuario
+  dispatch(updateUserPosts({
+    oldUsername,
+    newUsername,
+    newProfilePic,
+  }));
+
+  alert("✅ Cambios guardados correctamente");
+
+  setShowEditModal(false);
+  setNuevaContrasena("");
+  setConfirmarContrasena("");
+};
+
+useEffect(() => {
+  if (!currentUser) {
+    navigate("/login");
+  }
+}, [currentUser, navigate]);
+
 
   const handleCancelEdit = () => {
     setShowEditModal(false);
@@ -87,11 +107,12 @@ const Perfil: React.FC = () => {
     setConfirmarContrasena("");
   };
 
+  const dispatch = useDispatch();
+  
   return (
     <div className="flex flex-col md:flex-row min-h-screen h-full w-full overflow-hidden bg-white">
-
+      {/* Panel lateral */}
       <div className="md:w-screen md:min-w-20 md:max-w-120 bg-brand text-white flex flex-col items-center py-10 md:sticky md:h-screen md:justify-start">
-
         <button
           onClick={() => navigate(-1)}
           className="absolute top-5 left-5 bg-white text-brand px-3 py-1 rounded shadow hover:bg-brand hover:text-white hover:border-white cursor-pointer transition"
@@ -99,12 +120,10 @@ const Perfil: React.FC = () => {
           Volver
         </button>
 
-        <div className="absolute top-5 right-5 text-white text-xl cursor-pointer">
-          <FaCog />
-        </div>
+        
 
         <img
-          src={avatarUrl || "https://i.imgur.com/JvkkpKf.png"}
+          src={avatarUrl || DEFAULT_PROFILE_IMAGE}
           alt="Foto de perfil"
           className="w-28 h-28 rounded-full border-4 border-white shadow-md object-cover"
         />
@@ -142,16 +161,17 @@ const Perfil: React.FC = () => {
         </button>
       </div>
 
+      {/* Sección de publicaciones */}
       <div className="flex flex-col bg-white md:max-h-screen md:p-10 pb-20 w-full md:w-2/3 md:pb-10">
         <h2 className="p-6 text-2xl font-semibold text-black mb-6">Publicaciones</h2>
-
-        <div className="md:overflow-y-scroll md:max-w-3xl max-w-lg">
-          <PostList userFilter="Usuario Actual" />
+        <div className="md:overflow-y-scroll md:max-w-3xl max-w-full">
+          <PostList userFilter={nombre} />
         </div>
       </div>
 
       {!dskSize && navBarMvl}
 
+      {/* Modal de edición */}
       {showEditModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">

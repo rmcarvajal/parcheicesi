@@ -1,50 +1,30 @@
-// app/store.ts
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import postsReducer from '../features/postSlice';
-import authReducer from '../features/authSlice';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Usa localStorage por defecto
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 
-// Combina tus reducers
-const rootReducer = combineReducers({
-  posts: postsReducer,
-  auth: authReducer,
-});
+// Reducers
+import authReducer from "../features/authSlice";
+import postsReducer from "../features/postSlice";
 
-// Configuración de persistencia
+// 🔹 Persistimos solo auth y posts
 const persistConfig = {
-  key: 'root',
-  version: 1,
+  key: "root",
   storage,
-  whitelist: ['auth'],
+  whitelist: ["auth", "posts"], // guardamos ambos
 };
 
-// Crea un reducer persistente
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// Configura el store con el reducer persistente
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+const rootReducer = combineReducers({
+  auth: authReducer,
+  posts: postsReducer,
 });
 
-// Exporta el persistor
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+});
+
 export const persistor = persistStore(store);
 
-// Tipos para TypeScript
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
