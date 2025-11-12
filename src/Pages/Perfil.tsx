@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import React, { useState, useEffect } from "react";
 import NavBar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
@@ -37,8 +36,6 @@ const Perfil: React.FC = () => {
   // Navbar móvil
   const navBarMvl = (
     <div className="fixed bottom-0 left-0 w-full z-50 bg-white">
-      <NavBar />
-    </div>
       <NavBar />
     </div>
   );
@@ -130,18 +127,7 @@ useEffect(() => {
           alt="Foto de perfil"
           className="w-28 h-28 rounded-full border-4 border-white shadow-md object-cover"
         />
-          className="w-28 h-28 rounded-full border-4 border-white shadow-md object-cover"
-        />
 
-        <h2 className="mt-4 text-xl font-semibold">{nombre}</h2>
-        <p className="text-sm text-white/80">{ocupacion}</p>
-
-        <button
-          onClick={() => setShowEditModal(true)}
-          className="mt-4 bg-white text-brand border-2 border-brand font-medium px-6 py-2 rounded shadow hover:bg-brand hover:text-white transition hover:border-white cursor-pointer"
-        >
-          Editar perfil
-        </button>
         <h2 className="mt-4 text-xl font-semibold">{nombre}</h2>
         <p className="text-sm text-white/80">{ocupacion}</p>
 
@@ -182,7 +168,6 @@ useEffect(() => {
           <PostList userFilter={nombre} />
         </div>
       </div>
-
 
       {!dskSize && navBarMvl}
 
@@ -273,5 +258,4 @@ useEffect(() => {
   );
 };
 
-export default Perfil;
 export default Perfil;
