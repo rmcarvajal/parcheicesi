@@ -67,8 +67,7 @@ const Perfil: React.FC = () => {
 
   if (!currentUser) return;
 
-  // 🔹 Guardar los valores antiguos y nuevos
-  const oldUsername = currentUser.username;
+  // Guardar los valores nuevos
   const newProfilePic = avatarUrl;
   const newUsername = nombre;
 
@@ -80,9 +79,9 @@ const Perfil: React.FC = () => {
     ...(nuevaContrasena ? { password: nuevaContrasena } : {}),
   }));
 
-  // 🔹 Actualizar los posts del usuario
+  // Actualizar los posts del usuario usando email como identificador
   dispatch(updateUserPosts({
-    oldUsername,
+    userEmail: currentUser.email, 
     newUsername,
     newProfilePic,
   }));

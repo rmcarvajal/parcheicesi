@@ -24,6 +24,8 @@ function PostComponent({id, user, pic, time, text, img, likes = 0, commentsList 
   const [expandedImage, setExpandedImage] = useState(false);
   const currentUser = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
+  // Obtener el post completo desde Redux para acceder al userEmail
+  const post = useSelector((state: RootState) => state.posts.posts.find(p => p.id === id));
 
   const handleToggle = () => setExpanded(prev => !prev);
   const handleImageToggle = () => setExpandedImage(prev => !prev);
@@ -40,7 +42,8 @@ function PostComponent({id, user, pic, time, text, img, likes = 0, commentsList 
     }
   };
 
-  const isOwner = currentUser && currentUser.username === user;
+  // Comparar por email en lugar de username
+  const isOwner = currentUser && post && post.userEmail === currentUser.email;
 
   return(
     <div id="post-component" className="flex flex-col w-full h-hug bg-white gap-3.5 p-2.5 border-black border-2 rounded-2xl">
