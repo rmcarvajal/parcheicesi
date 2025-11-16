@@ -122,6 +122,11 @@ const postsSlice = createSlice({
     clearPosts: (state) => {
     state.posts = [];
     },
+    deletePost: (state, action: PayloadAction<string>) => {
+      const postId = action.payload;
+      state.posts = state.posts.filter(post => post.id !== postId);
+      localStorage.setItem("posts", JSON.stringify(state.posts));
+    },
     updateUserPosts: (state, action) => {
   const { oldUsername, newUsername, newProfilePic } = action.payload;
   state.posts = state.posts.map(post => 
@@ -135,5 +140,5 @@ const postsSlice = createSlice({
   },
 });
 
-export const { addPost, toggleLike, addComment, clearPosts, updateUserPosts } = postsSlice.actions;
+export const { addPost, toggleLike, addComment, clearPosts, deletePost, updateUserPosts } = postsSlice.actions;
 export default postsSlice.reducer;
