@@ -1,4 +1,7 @@
 import { useState, type KeyboardEvent } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../app/store";
+import { deletePost } from "../features/postSlice";
 import PostInteractions from "./Post-Interaction";
 import CommentList from "./CommentList";
 import { Comment as CommentType } from "../features/postSlice";
@@ -19,6 +22,8 @@ interface PostCompProps {
 function PostComponent({id, user, pic, time, text, img, likes = 0, commentsList = []}: PostCompProps) {
   const [expanded, setExpanded] = useState(false);
   const [expandedImage, setExpandedImage] = useState(false);
+  const currentUser = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleToggle = () => setExpanded(prev => !prev);
   const handleImageToggle = () => setExpandedImage(prev => !prev);
@@ -29,14 +34,34 @@ function PostComponent({id, user, pic, time, text, img, likes = 0, commentsList 
     }
   };
 
+  const handleDelete = () => {
+    if (window.confirm("¿Estás seguro de que quieres eliminar este post?")) {
+      dispatch(deletePost(id));
+    }
+  };
+
+  const isOwner = currentUser && currentUser.username === user;
+
   return(
     <div id="post-component" className="flex flex-col w-full h-hug bg-white gap-3.5 p-2.5 border-black border-2 rounded-2xl">
-      <div className="flex flex-row gap-2.5">
-        <img src={pic} className="w-13 h-13 rounded-full object-cover" alt={`${user} perfil`} />
-        <div className="flex flex-col gap-1">
-          <h3 className="font-bold text-2xl text-brand">{user}</h3>
-          <p className="font-light text-sm"> {time ? timeAgo(time) : ''} </p>
+      <div className="flex flex-row gap-2.5 justify-between items-start">
+        <div className="flex flex-row gap-2.5">
+          <img src={pic} className="w-13 h-13 rounded-full object-cover" alt={`${user} perfil`} />
+          <div className="flex flex-col gap-1">
+            <h3 className="font-bold text-2xl text-brand">{user}</h3>
+            <p className="font-light text-sm"> {time ? timeAgo(time) : ''} </p>
+          </div>
         </div>
+        {isOwner && (
+          <button
+            onClick={handleDelete}
+            className="text-red-500 hover:text-red-700 font-semibold text-sm px-2 py-1 rounded hover:bg-red-50 transition-colors"
+            aria-label="Eliminar post"
+            title="Eliminar post"
+          >
+            🗑️
+          </button>
+        )}
       </div>
 
       <p
