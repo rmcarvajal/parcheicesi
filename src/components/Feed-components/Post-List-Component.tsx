@@ -37,6 +37,7 @@ function PostList({ userFilter }: PostListProps) {
     const newPost: Post = {
       id: uuidv4(),
       user: currentUser.username,
+      userEmail: currentUser.email, 
       profilePic: currentUser.profilePic || defaultProfileImage,
       time: Date.now(),
       text: postData.text || "",

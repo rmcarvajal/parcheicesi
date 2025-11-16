@@ -25,7 +25,7 @@ function PostInteractions({ postId, initialLikes = 0, initialComments = [] }: Po
   const likes = post?.likes ?? initialLikes;
   const comments = post?.commentsList ?? initialComments;
   const likedBy = post?.likedBy ?? [];
-  const liked = currentUser ? likedBy.includes(currentUser.username) : false;
+  const liked = currentUser ? likedBy.includes(currentUser.email) : false;
 
   const handleLike = () => {
     if (!currentUser) {
@@ -33,7 +33,7 @@ function PostInteractions({ postId, initialLikes = 0, initialComments = [] }: Po
       return;
     }
 
-    dispatch(toggleLike({ postId, username: currentUser.username }));
+    dispatch(toggleLike({ postId, userEmail: currentUser.email }));
   };
 
   const handleAddComment = (e?: React.FormEvent) => {
@@ -44,6 +44,7 @@ function PostInteractions({ postId, initialLikes = 0, initialComments = [] }: Po
     const comment: CommentType = {
       id: uuidv4(),
       user: currentUser.username,
+      userEmail: currentUser.email, 
       text,
     };
 

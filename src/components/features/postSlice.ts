@@ -4,13 +4,15 @@ import { v4 as uuidv4 } from 'uuid';
 
 export interface Comment {
   id: string;
-  user: string;
+  user: string; 
+  userEmail: string; // email como identificador único
   text: string;
 }
 
 export interface Post {
   id: string;
-  user: string;
+  user: string; 
+  userEmail: string; // email como identificador único
   profilePic?: string;
   time: number;
   text: string;
@@ -19,7 +21,7 @@ export interface Post {
   commentsList: Comment[];
   category: string;
   liked: boolean;
-  likedBy: string[]; // 👈 nueva propiedad: quiénes dieron like
+  likedBy: string[]; // almacena emails de quiénes dieron like
 }
 
 interface PostsState {
@@ -52,13 +54,19 @@ const seededPosts: Post[] = Array.isArray(feedData)
       return {
         id: String(d.id ?? uuidv4()),
         user: d.user ?? 'Unknown',
+        userEmail: d.userEmail ?? d.user ?? 'unknown@example.com', // retrocompatibilidad
         profilePic: d.profilePic ?? DEFAULT_PROFILE_IMAGE,
         time: timeMs,
         text: d.text ?? '',
         image: d.image ?? '',
         likes: d.likes ?? 0,
         commentsList: Array.isArray(d.commentsList)
-          ? d.commentsList.map((c: any) => ({ id: uuidv4(), user: c.user ?? 'Anon', text: c.text ?? '' }))
+          ? d.commentsList.map((c: any) => ({ 
+              id: uuidv4(), 
+              user: c.user ?? 'Anon', 
+              userEmail: c.userEmail ?? c.user ?? 'unknown@example.com', // retrocompatibilidad
+              text: c.text ?? '' 
+            }))
           : [],
         category: d.category ?? '',
         liked: false,
@@ -71,8 +79,15 @@ const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
 const normalizePosts = (posts: any[]) =>
   posts.map((p) => ({
     ...p,
+    userEmail: p.userEmail || p.user || 'unknown@example.com', // retrocompatibilidad: usa email o username como fallback
     likedBy: p.likedBy || [], // 🔹 si no existe, la crea vacía
     liked: false,
+    commentsList: Array.isArray(p.commentsList)
+      ? p.commentsList.map((c: any) => ({
+          ...c,
+          userEmail: c.userEmail || c.user || 'unknown@example.com', // retrocompatibilidad
+        }))
+      : [],
   }));
 
 const initialState = {
@@ -90,20 +105,20 @@ const postsSlice = createSlice({
     },
     
     toggleLike: (state, action) => {
-    const { postId, username } = action.payload;
+    const { postId, userEmail } = action.payload;
     const post = state.posts.find(p => p.id === postId);
     if (post) {
       // Aseguramos que el post tenga su lista de likes
       if (!Array.isArray(post.likedBy)) post.likedBy = [];
 
-      const alreadyLiked = post.likedBy.includes(username);
+      const alreadyLiked = post.likedBy.includes(userEmail);
 
       if (alreadyLiked) {
-        post.likedBy = post.likedBy.filter((u: string) => u !== username);
+        post.likedBy = post.likedBy.filter((u: string) => u !== userEmail);
 
         post.likes = Math.max(0, post.likes - 1);
       } else {
-        post.likedBy.push(username);
+        post.likedBy.push(userEmail);
         post.likes += 1;
       }
     }
@@ -128,13 +143,23 @@ const postsSlice = createSlice({
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },
     updateUserPosts: (state, action) => {
-  const { oldUsername, newUsername, newProfilePic } = action.payload;
+  const { userEmail, newUsername, newProfilePic } = action.payload;
   state.posts = state.posts.map(post => 
-    post.user === oldUsername
-      ? { ...post, user: newUsername, profilePic: newProfilePic || post.profilePic }
+    post.userEmail === userEmail
+      ? { 
+          ...post, 
+          user: newUsername, 
+          profilePic: newProfilePic || post.profilePic,
+          // Actualizar también el username en los comentarios del usuario
+          commentsList: post.commentsList.map(comment =>
+            comment.userEmail === userEmail
+              ? { ...comment, user: newUsername }
+              : comment
+          )
+        }
       : post
   );
-  localStorage.setItem("persist:root", JSON.stringify(state)); // 🔹 asegura persistencia manual si es necesario
+  localStorage.setItem("posts", JSON.stringify(state.posts)); // 🔹 guardar en posts directamente
 },
 
   },
