@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../app/store';
-import { addPost, Post, clearPosts } from '../features/postSlice';
+import { addPost, Post} from '../features/postSlice';
 import { v4 as uuidv4 } from 'uuid';
 import PostComponent from './Post-Component';
 import PostForm from './PostForm';
-import { persistor } from '../app/store';
 
 interface PostListProps {
   userFilter?: string;
