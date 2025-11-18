@@ -1,30 +1,17 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
-import { persistReducer, persistStore } from "redux-persist";
-
-// Reducers
+import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/authSlice";
 import postsReducer from "../features/postSlice";
 
-// 🔹 Persistimos solo auth y posts
-const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: ["auth", "posts"], // guardamos ambos
-};
-
-const rootReducer = combineReducers({
-  auth: authReducer,
-  posts: postsReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    auth: authReducer,
+    posts: postsReducer,
+  },
 });
 
-export const persistor = persistStore(store);
+// ------------------------------
+// TYPES PARA REDUX TOOLKIT
+// ------------------------------
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

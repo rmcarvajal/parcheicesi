@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout, updateUser } from "../components/features/authSlice";
 import { updateUserPosts } from "../components/features/postSlice";
-
-import {persistor} from "../components/app/store";
 import { RootState } from "../components/app/store"; // ajusta la ruta si tu store está en otro lugar
 
 const DEFAULT_PROFILE_IMAGE =
@@ -55,7 +53,9 @@ const Perfil: React.FC = () => {
 
   const handleLogout = () => {
   dispatch(logout()); // 🔹 Limpia el usuario del estado
-  persistor.flush(); // 🔹 Asegura que el cambio se guarde
+  localStorage.removeItem("auth");
+  localStorage.removeItem("posts");
+ // 🔹 Asegura que el cambio se guarde
   navigate("/login"); // 🔹 Redirige al login
 };
 
