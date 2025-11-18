@@ -7,6 +7,8 @@ export interface Comment {
   user: string; 
   userEmail: string; // email como identificador único
   text: string;
+  time: number; // timestamp
+
 }
 
 export interface Post {
@@ -79,7 +81,7 @@ const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
 const normalizePosts = (posts: any[]) =>
   posts.map((p) => ({
     ...p,
-    userEmail: p.userEmail || p.user || 'unknown@example.com', // retrocompatibilidad: usa email o username como fallback
+    userEmail: p.userEmail || 'unknown@example.com', // retrocompatibilidad: usa email o username como fallback
     likedBy: p.likedBy || [], // 🔹 si no existe, la crea vacía
     liked: false,
     commentsList: Array.isArray(p.commentsList)

@@ -46,6 +46,7 @@ function PostInteractions({ postId, initialLikes = 0, initialComments = [] }: Po
       user: currentUser.username,
       userEmail: currentUser.email, 
       text,
+      time: Date.now(),
     };
 
     dispatch(addComment({ postId, comment }));
