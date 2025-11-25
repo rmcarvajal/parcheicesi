@@ -1,36 +1,33 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './pages/login';
-import Signup from './pages/signup';
-import Feed from './pages/Feed';
-import FeedPC from './pages/Feed-PC';
-import Perfil from './pages/Perfil';
-import Messages from './pages/Messages';
-import Landing from './pages/Landing';
-// Importa tu componente real
+import Login from './Pages/login';
+import Signup from './Pages/signup';
+import Feed from './Pages/Feed';
+import FeedPC from './Pages/Feed-PC';
+import Perfil from './Pages/Perfil';
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
+import Messages from './Pages/Messages';
+import Landing from './Pages/Landing';
 import { useEffect } from 'react';
-import { useAppDispatch } from './components/app/hooks.ts';
-import { loadSession } from './components/features/authSlice.ts';
-
+import { useAppDispatch } from './components/app/hooks';
+import { loadSession } from './components/features/authSlice';
 
 function App() {
   const dskSize = useMediaQuery({ minWidth: 768 });
   const dispatch = useAppDispatch();
 
-useEffect(() => {
-  dispatch(loadSession());
-}, []);
-
+  useEffect(() => {
+    dispatch(loadSession());
+  }, []);
 
   return (
     <div id="app" className="app">
       <div className="h-screen w-screen bg-white">
         <main className="main-content">
           <Routes>
-            {/*Landing */}
-            <Route path="/" element={<Landing/>} />
+            {/* Landing */}
+            <Route path="/" element={<Landing />} />
 
             {/* Login y registro */}
             <Route path="/login" element={<Login />} />
@@ -38,22 +35,19 @@ useEffect(() => {
 
             {/* Otras secciones */}
             <Route path="/feed" element={dskSize ? <FeedPC /> : <Feed />} />
-            <Route path="/messages" element={<Messages/>} />
+            <Route path="/messages" element={<Messages />} />
             <Route path="/materias" element={<div>Página de Materias</div>} />
 
-            {/* Perfil real */}
+            {/* Perfil */}
             <Route path="/perfil" element={<Perfil />} />
 
             {/* Ruta fallback */}
             <Route path="*" element={<div>Página no encontrada</div>} />
           </Routes>
         </main>
-
-        
       </div>
     </div>
   );
 }
 
 export default App;
-            
