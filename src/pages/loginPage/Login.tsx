@@ -10,30 +10,22 @@ import hidden from "../../assets/hidden.svg";
 import shown from "../../assets/shown.svg";
 
 function Login() {
-  const [usernameOrEmail, setUsernameOrEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showpass, setShowpass] = useState("password");
-  const [error, setError] = useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const navigate = useNavigate();
-  const users = useSelector((state: RootState) => state.auth.users);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const { loading, error } = useSelector((state: RootState) => state.auth);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
 
-    const user = users.find(
-      (u) =>
-        (u.username === usernameOrEmail || u.email === usernameOrEmail) &&
-        u.password === password
-    );
+    const result = await dispatch(login({ email, password }));
 
-    if (user) {
-      dispatch(login({ email: usernameOrEmail, password }));
+    if (login.fulfilled.match(result)) {
       navigate("/feed");
-    } else {
-      setError("Usuario o contraseña incorrectos");
     }
   };
 
@@ -53,11 +45,11 @@ function Login() {
               <img src={person} className="w-5 h-5" />
             </div>
             <input
-              type="text"
-              placeholder="Usuario o correo"
+              type="email"
+              placeholder="Correo"
               className="pl-3 max-w-45"
-              value={usernameOrEmail}
-              onChange={(e) => setUsernameOrEmail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -78,25 +70,17 @@ function Login() {
               src={showpass === "password" ? hidden : shown}
               className="w-5 h-5 cursor-pointer mr-2"
               onClick={() =>
-                setShowpass((textType) =>
-                  textType === "text" ? "password" : "text"
-                )
+                setShowpass((v) => (v === "password" ? "text" : "password"))
               }
             />
           </div>
 
-          <a
-            href="#"
-            className="underline text-center text-brand mb-5 text-sm"
-          >
-            ¿Olvidaste tu contraseña?
-          </a>
-
           <button
             type="submit"
             className="bg-brand text-white w-30 h-10 rounded-xl border-3 border-brand hover:text-brand-light cursor-pointer"
+            disabled={loading}
           >
-            Iniciar sesión
+            {loading ? "Cargando..." : "Iniciar sesión"}
           </button>
         </form>
 
