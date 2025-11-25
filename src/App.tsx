@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+
 import Login from './Pages/loginPage/Login.tsx';
 import Signup from './Pages/loginPage/signup.tsx';
 import Feed from './Pages/Feed';
@@ -8,9 +9,18 @@ import './App.css';
 import { useMediaQuery } from 'react-responsive';
 import Messages from './Pages/Messages.tsx';
 import Landing from './Pages/Landing.tsx';
+import { useEffect } from 'react';
+import { useAppDispatch } from './components/app/hooks.ts';
+import { loadSession } from './components/features/authSlice.ts';
+
 
 function App() {
   const dskSize = useMediaQuery({ minWidth: 768 });
+  const dispatch = useAppDispatch();
+
+useEffect(() => {
+  dispatch(loadSession());
+}, []);
 
 
   return (
