@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../components/features/authSlice";
 import { RootState } from "../components/app/store";
 
-import emailIcon from "../../assets/email.svg";
-import lock from "../../assets/lock.svg";
-import hidden from "../../assets/hidden.svg";
-import shown from "../../assets/shown.svg";
+import emailIcon from "../assets/email.svg";
+import lock from "../assets/lock.svg";
+import hidden from "../assets/hidden.svg";
+import shown from "../assets/shown.svg";
 
 function Signup() {
   const [username, setUsername] = useState("");
