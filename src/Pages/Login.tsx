@@ -8,6 +8,7 @@ import person from "../assets/person-fill.svg";
 import lock from "../assets/lock.svg";
 import hidden from "../assets/hidden.svg";
 import shown from "../assets/shown.svg";
+import Logo from "../assets/LOGO grande.png";
 
 
 function Login() {
@@ -33,7 +34,7 @@ function Login() {
   return (
     <div className="w-screen h-screen bg-brand flex justify-center items-center p-4">
       <div className="max-w-80 max-h-130 w-full h-full flex flex-col bg-white rounded-3xl p-4 py-5 justify-around items-center md:w-125">
-        <img src="src/assets/LOGO grande.png" className="w-43 h-30.5" alt="Logo" />
+        <img src={Logo} className="w-43 h-30.5" alt="Logo" />
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
