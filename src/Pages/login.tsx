@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
-import { login } from "../../components/features/authSlice";
-import { RootState } from "../../components/app/store";
+import { login } from "../components/features/authSlice";
+import { RootState } from "../components/app/store";
 
 import person from "../../assets/person-fill.svg";
 import lock from "../../assets/lock.svg";

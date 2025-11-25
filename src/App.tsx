@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './pages/loginpage/login.tsx';
-import Signup from './pages/loginpage/signup.tsx';
+import Login from './pages/login.tsx';
+import Signup from './pages/signup.tsx';
 import Feed from './pages/Feed.tsx';
 import FeedPC from './pages/Feed-PC.tsx';
 import Perfil from './pages/Perfil.tsx'; // Importa tu componente real
