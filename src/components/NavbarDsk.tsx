@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { RootState } from "../components/app/store";
 import { useSelector } from "react-redux";
+import logo from '../assets/LOGO horizontal.png';
 
 
 function NavBarDsk() {
   const currentUser = useSelector((state: RootState) => state.auth.user);
   return (
     <div id='navbar-container' className='flex flex-col min-w-20 h-screen fi p-7.5 bg-white sticky top-0 border-r-2 border-white gap-10 items-center'>
-        <img src='src\Assets\LOGO horizontal.png' className='h-22 w-auto object-contain mb-8'></img>
+        <img src={logo} className='h-22 w-auto object-contain mb-8'></img>
         <h2 className="text-xl font-semibold self-baseline">
           {currentUser ? currentUser.username : "Usuario"}
         </h2>
