@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './pages/login.tsx';
-import Signup from './pages/signup.tsx';
-import Feed from './pages/Feed.tsx';
-import FeedPC from './pages/Feed-PC.tsx';
-import Perfil from './pages/Perfil.tsx'; // Importa tu componente real
+import Login from './pages/login';
+import Signup from './pages/signup';
+import Feed from './pages/Feed';
+import FeedPC from './pages/Feed-PC';
+import Perfil from './pages/Perfil';
+import Messages from './pages/Messages';
+import Landing from './pages/Landing';
+// Importa tu componente real
 import './App.css';
 import { useMediaQuery } from 'react-responsive';
-import Messages from './pages/Messages.tsx';
-import Landing from './pages/Landing.tsx';
 import { useEffect } from 'react';
 import { useAppDispatch } from './components/app/hooks.ts';
 import { loadSession } from './components/features/authSlice.ts';
