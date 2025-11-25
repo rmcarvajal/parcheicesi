@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './pages/loginpage/Login.tsx';
+import Login from './pages/loginpage/login.tsx';
 import Signup from './pages/loginpage/signup.tsx';
 import Feed from './pages/Feed.tsx';
 import FeedPC from './pages/Feed-PC.tsx';
