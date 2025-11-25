@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/LOGO grande fondo oscuro.png";
+import Logo from "../assets/LOGO grande fondo oscuro.png"
 
 function Landing() {
   return (
