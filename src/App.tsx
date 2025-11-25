@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './Pages/login';
+import Login from './Pages/Login';
 import Signup from './Pages/signup';
 import Feed from './Pages/Feed';
 import FeedPC from './Pages/Feed-PC';
