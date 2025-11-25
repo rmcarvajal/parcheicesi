@@ -21,6 +21,7 @@
     "react-responsive": "^10.0.1",
     "react-router-dom": "^7.9.5",
     "redux-persist": "^6.0.0",
+    "serve": "^14.2.5",
     "tailwindcss": "^4.1.13",
     "uuid": "^13.0.0"
   },
