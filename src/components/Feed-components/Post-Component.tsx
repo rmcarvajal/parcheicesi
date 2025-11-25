@@ -63,7 +63,7 @@ function PostComponent({
           <img src={pic} className="w-13 h-13 rounded-full object-cover" alt={`${user} perfil`} />
           <div className="flex flex-col gap-1">
             <h3 className="font-bold text-2xl text-brand">{user}</h3>
-            <p className="font-light text-sm"> {time ? timeAgo(time) : ''} </p>
+            <p className="font-light text-sm"> {time ? timeAgo(new Date(time).getTime()) : ''} </p>
           </div>
         </div>
         {isOwner && (

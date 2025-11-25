@@ -15,7 +15,7 @@ const PostForm: React.FC<Props> = ({ onSubmit }) => {
   const [loading, setLoading] = useState(false);
 
   // get current user from supabase client (not redux) to ensure session persistence
-  const user = supabase.auth.getUser ? null : null; // placeholder to show we don't rely on this; you'll probably get via Redux auth
+  const user = null; // placeholder: don't rely on calling supabase.auth.getUser synchronously here; use Redux or call it when needed
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value);
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,7 @@ const PostForm: React.FC<Props> = ({ onSubmit }) => {
   };
 
   // NOTE: We expect the app to know current user (from Redux auth slice). We'll read it here directly from supabase session
-  const currentUser = supabase.auth.getUser ? null : null; // we won't rely on this; the caller PostList should still control access UI.
+  const currentUser = null; // do not check supabase.auth.getUser as a boolean; prefer Redux or await supabase.auth.getUser() when needed
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

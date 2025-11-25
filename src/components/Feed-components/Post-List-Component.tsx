@@ -204,6 +204,7 @@ function PostList({ userFilter }: PostListProps) {
                 likes_count: newRow.likes_count ?? 0,
                 commentsList: (commentsData || []).map((c: any) => ({
                   id: c.id,
+                  post_id: c.post_id,
                   user_id: c.user_id,
                   user_name: c.users?.username,
                   text: c.text,
@@ -286,7 +287,7 @@ function PostList({ userFilter }: PostListProps) {
           <PostComponent
             key={p.id}
             id={p.id}
-            user={p.user}
+            user={p.user ?? "Unknown"}
             pic={p.profilePic || ''}
             time={new Date(p.created_at).getTime()}
             text={p.text || ''}
