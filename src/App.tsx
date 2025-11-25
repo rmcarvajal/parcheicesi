@@ -32,7 +32,7 @@ useEffect(() => {
             <Route path="/" element={<Landing/>} />
 
             {/* Login y registro */}
-            <Route path="login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Signup />} />
 
             {/* Otras secciones */}
