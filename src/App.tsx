@@ -14,9 +14,13 @@ import { useAppDispatch } from './components/app/hooks';
 import { loadSession } from './components/features/authSlice';
 
 function App() {
+  // Detecta si el usuario está en pantalla de escritorio (>=768px)
   const dskSize = useMediaQuery({ minWidth: 768 });
+
+  // Hook personalizado de Redux para despachar acciones
   const dispatch = useAppDispatch();
 
+  // Al cargar la app, intenta restaurar la sesión guardada (si existe)
   useEffect(() => {
     dispatch(loadSession());
   }, []);
@@ -26,22 +30,26 @@ function App() {
       <div className="h-screen w-screen bg-white">
         <main className="main-content">
           <Routes>
-            {/* Landing */}
+            {/* Página inicial tipo landing */}
             <Route path="/" element={<Landing />} />
 
-            {/* Login y registro */}
+            {/* Rutas de autenticación */}
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Signup />} />
 
-            {/* Otras secciones */}
+            {/* Feed: versión móvil o de escritorio según el tamaño de pantalla */}
             <Route path="/feed" element={dskSize ? <FeedPC /> : <Feed />} />
+
+            {/* Página de mensajes */}
             <Route path="/messages" element={<Messages />} />
+
+            {/* Placeholder de Materias */}
             <Route path="/materias" element={<div>Página de Materias</div>} />
 
-            {/* Perfil */}
+            {/* Perfil del usuario */}
             <Route path="/perfil" element={<Perfil />} />
 
-            {/* Ruta fallback */}
+            {/* Fallback para rutas inexistentes */}
             <Route path="*" element={<div>Página no encontrada</div>} />
           </Routes>
         </main>
