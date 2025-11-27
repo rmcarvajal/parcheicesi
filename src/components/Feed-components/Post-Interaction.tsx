@@ -56,7 +56,7 @@ const PostInteraction: React.FC<PostInteractionProps> = ({
     );
 
     if (result.meta.requestStatus === "fulfilled") {
-      const { likes_count, added } = result.payload;
+      const { likes_count, added } = result.payload as { likes_count: number; added: boolean };
 
       setLikes(likes_count);
       setLiked(added);
@@ -78,7 +78,8 @@ const PostInteraction: React.FC<PostInteractionProps> = ({
     );
 
     if (result.meta.requestStatus === "fulfilled") {
-      const newC = result.payload.comment;
+      const payload = result.payload as { comment: any };
+      const newC = payload.comment;
       setComments((prev) => [...prev, newC]);
       setNewComment("");
     }

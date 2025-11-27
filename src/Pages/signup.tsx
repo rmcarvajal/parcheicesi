@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../components/features/authSlice";
-import { RootState } from "../../components/app/store";
+import { logout, signup } from "../components/features/authSlice";
+import { RootState } from "../components/app/store";
 
-import emailIcon from "../../assets/email.svg";
-import lock from "../../assets/lock.svg";
-import hidden from "../../assets/hidden.svg";
-import shown from "../../assets/shown.svg";
+import emailIcon from "../assets/email.svg";
+import lock from "../assets/lock.svg";
+import hidden from "../assets/hidden.svg";
+import shown from "../assets/shown.svg";
+import Logo from "../assets/LOGO grande.png";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -42,7 +43,7 @@ function Signup() {
 
       <div className="max-w-80 max-h-130 w-full h-full flex flex-col bg-white rounded-3xl p-2 py-5 justify-around items-center md:w-125">
 
-        <img src="src/assets/LOGO grande.png" className="w-43 h-30.5" alt="Logo" />
+        <img src={Logo} className="w-43 h-30.5" alt="Logo" />
 
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
