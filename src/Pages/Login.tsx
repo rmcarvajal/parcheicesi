@@ -74,7 +74,7 @@ function Login() {
             {/* Input del email */}
             <input
               type="email"
-              placeholder="Correo"
+              placeholder="E-mail"
               className="pl-3 max-w-45"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -92,7 +92,7 @@ function Login() {
             {/* Input de contraseña, visible o no según showpass */}
             <input
               type={showpass}
-              placeholder="Contraseña"
+              placeholder="Password"
               className="pl-3 max-w-45"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -115,17 +115,17 @@ function Login() {
             className="bg-brand text-white w-30 h-10 rounded-xl border-3 border-brand hover:text-brand-light cursor-pointer"
             disabled={loading}
           >
-            {loading ? "Cargando..." : "Iniciar sesión"}
+            {loading ? "Loading..." : "Log in"}
           </button>
         </form>
 
         {/* Texto de registro */}
-        <p className="text-gray-400 text-center">¿No tienes una cuenta?</p>
+        <p className="text-gray-400 text-center">Don't have an account?</p>
 
         {/* Botón que redirige al registro */}
         <NavLink to="/registro">
           <button className="bg-white text-brand w-30 h-10 rounded-xl border-3 border-brand hover:bg-brand-light cursor-pointer">
-            Regístrate
+            Sign up
           </button>
         </NavLink>
       </div>

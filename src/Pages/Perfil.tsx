@@ -181,7 +181,7 @@ const Perfil: React.FC = () => {
           onClick={() => navigate(-1)}
           className="absolute top-5 left-5 bg-white text-brand px-3 py-1 rounded shadow hover:bg-brand hover:text-white transition"
         >
-          Volver
+          Return
         </button>
 
         {/* Avatar */}
@@ -200,7 +200,7 @@ const Perfil: React.FC = () => {
           onClick={() => setShowEditModal(true)}
           className="mt-4 bg-white text-brand border-2 border-brand font-medium px-6 py-2 rounded shadow hover:bg-brand hover:text-white transition"
         >
-          Editar perfil
+          Edit profile
         </button>
 
         {/* Botón logout */}
@@ -208,7 +208,7 @@ const Perfil: React.FC = () => {
           onClick={handleLogout}
           className="mt-auto mb-5 bg-white text-brand border-2 border-brand font-medium px-6 py-2 rounded shadow hover:bg-brand hover:text-white transition"
         >
-          Cerrar sesión
+          Log out
         </button>
       </div>
 
@@ -216,7 +216,7 @@ const Perfil: React.FC = () => {
       {/* PANEL PRINCIPAL → Publicaciones */}
       <div className="flex flex-col bg-white md:max-h-screen md:p-10 pb-20 w-full md:w-2/3">
         <h2 className="p-6 text-2xl font-semibold text-black mb-6">
-          Publicaciones
+          Posts
         </h2>
 
         {/* Lista de posts filtrados por nombre */}
@@ -238,13 +238,13 @@ const Perfil: React.FC = () => {
           <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
 
             <h2 className="text-2xl font-bold text-brand mb-6">
-              Editar Perfil
+              Edit profile
             </h2>
 
             {/* FOTO */}
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-2">
-                Cambiar foto
+                Change image
               </label>
 
               <input
@@ -261,14 +261,14 @@ const Perfil: React.FC = () => {
                 }
                 className="bg-brand text-white px-4 py-2 rounded-lg shadow hover:bg-brand/90"
               >
-                Subir foto
+                Upload image
               </button>
             </div>
 
             {/* NOMBRE */}
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-2">
-                Nombre
+                Name
               </label>
               <input
                 type="text"
@@ -281,7 +281,7 @@ const Perfil: React.FC = () => {
             {/* OCUPACIÓN */}
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-2">
-                Ocupación
+                Occupation
               </label>
               <input
                 type="text"
@@ -294,7 +294,7 @@ const Perfil: React.FC = () => {
             {/* NUEVA CONTRASEÑA */}
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-2">
-                Nueva contraseña
+                New password
               </label>
               <input
                 type="password"
@@ -307,7 +307,7 @@ const Perfil: React.FC = () => {
             {/* CONFIRMAR CONTRASEÑA */}
             <div className="mb-6">
               <label className="block text-gray-700 font-semibold mb-2">
-                Confirmar contraseña
+                Confirm password
               </label>
               <input
                 type="password"
@@ -323,7 +323,7 @@ const Perfil: React.FC = () => {
                 onClick={handleCancelEdit}
                 className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400"
               >
-                Cancelar
+                Cancel
               </button>
 
               <button

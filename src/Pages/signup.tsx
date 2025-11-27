@@ -70,7 +70,7 @@ function Signup() {
             </div>
             <input
               type="text"
-              placeholder="Nombre de usuario"
+              placeholder="Username"
               className="pl-3 max-w-45"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -85,7 +85,7 @@ function Signup() {
             </div>
             <input
               type="email"
-              placeholder="Correo ICESI"
+              placeholder="School e-mail"
               className="pl-3 max-w-45"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -100,7 +100,7 @@ function Signup() {
             </div>
             <input
               type={showpass1}
-              placeholder="Contraseña"
+              placeholder="Password"
               className="pl-3 max-w-45"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -122,7 +122,7 @@ function Signup() {
             </div>
             <input
               type={showpass2}
-              placeholder="Confirmar contraseña"
+              placeholder="Confirm password"
               className="pl-3 max-w-45"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -143,13 +143,13 @@ function Signup() {
             className="bg-brand text-white w-30 h-10 rounded-xl border-3 border-brand hover:text-brand-light cursor-pointer mt-4"
             disabled={loading}
           >
-            {loading ? "Creando cuenta..." : "Regístrate"}
+            {loading ? "Creating account..." : "Sign up"}
           </button>
         </form>
 
         {/* Link para ir al login */}
         <NavLink to="/login" className="underline text-sm text-gray-600">
-          ¿Ya tienes cuenta? Inicia sesión
+          Already have an account? log in
         </NavLink>
       </div>
     </div>

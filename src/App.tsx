@@ -44,13 +44,13 @@ function App() {
             <Route path="/messages" element={<Messages />} />
 
             {/* Placeholder de Materias */}
-            <Route path="/materias" element={<div>Página de Materias</div>} />
+            <Route path="/materias" element={<div>Classes</div>} />
 
             {/* Perfil del usuario */}
             <Route path="/perfil" element={<Perfil />} />
 
             {/* Fallback para rutas inexistentes */}
-            <Route path="*" element={<div>Página no encontrada</div>} />
+            <Route path="*" element={<div>Page not found</div>} />
           </Routes>
         </main>
       </div>

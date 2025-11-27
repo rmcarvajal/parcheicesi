@@ -16,12 +16,12 @@ function Landing() {
 
         {/* Título de bienvenida */}
         <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-center">
-          Bienvenido a Parche Icesi
+          Welcome to Parche Icesi
         </h1>
 
         {/* Descripción corta de la plataforma */}
         <p className="text-white text-sm sm:text-base md:text-lg mb-6 md:mb-10 text-center">
-          Tu plataforma para conectar, compartir y aprender con la comunidad Icesi.
+          Your platform to connect, share and learn with the Icesi community.
         </p>
       </div>
 
@@ -31,14 +31,14 @@ function Landing() {
         {/* Botón para ir a la página de inicio de sesión */}
         <NavLink to="/login">
           <button className="bg-white text-brand w-56 sm:w-64 md:w-72 h-12 md:h-14 rounded-xl font-semibold hover:bg-brand hover:text-white hover:border-2 active:bg-brand active:text-white active:border-2 border-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
-            Iniciar Sesion
+            Log in
           </button>
         </NavLink>
 
         {/* Botón para ir a la página de registro */}
         <NavLink to="/registro">
           <button className="bg-white text-brand w-56 sm:w-64 md:w-72 h-12 md:h-14 rounded-xl font-semibold hover:bg-brand hover:text-white hover:border-2 active:bg-brand active:text-white active:border-2 border-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
-            Registrarse
+            Sign up
           </button>
         </NavLink>
 
