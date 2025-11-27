@@ -34,7 +34,7 @@ function Signup() {
 
     // Validación local: verificar que las contraseñas coinciden
     if (password !== confirmPassword) {
-      alert("Las contraseñas no coinciden");
+      alert("Passwords do not match");
       return;
     }
 

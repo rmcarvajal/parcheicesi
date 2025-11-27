@@ -331,7 +331,7 @@ const Perfil: React.FC = () => {
                 disabled={loading}
                 className="flex-1 bg-brand text-white py-2 rounded-lg hover:bg-brand/90"
               >
-                {loading ? "Guardando..." : "Guardar cambios"}
+                {loading ? "Saving..." : "Save changes"}
               </button>
             </div>
 

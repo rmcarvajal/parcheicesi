@@ -140,10 +140,10 @@ const PostInteraction: React.FC<PostInteractionProps> = ({
           className={btnEffects}
           onClick={() => setShowCommentBox(!showCommentBox)}
         >
-          Comentar
+          Comment
         </button>
 
-        <button className={btnEffects}>Compartir</button>
+        <button className={btnEffects}>Share</button>
       </div>
 
       {/* ------------ Comentarios ------------- */}
@@ -153,7 +153,7 @@ const PostInteraction: React.FC<PostInteractionProps> = ({
             <input
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
-              placeholder="Escribe un comentario..."
+              placeholder="Write a comment..."
               className="flex-1 border rounded-lg p-2 text-sm"
             />
             <button
@@ -161,7 +161,7 @@ const PostInteraction: React.FC<PostInteractionProps> = ({
               className="ml-2 bg-brand text-white px-4 py-2 rounded-lg"
               disabled={!newComment.trim()}
             >
-              Enviar
+              Send
             </button>
           </form>
         </div>

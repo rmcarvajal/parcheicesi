@@ -30,12 +30,12 @@ function Notification() {
             
             <div>
               <p className='text-sm text-gray-800'>
-                <strong className='font-semibold text-brand-dark'>{notif.user}</strong> ha publicado algo nuevo:
+                <strong className='font-semibold text-brand-dark'>{notif.user}</strong> posted:
                 
               </p>
               {/* Usamos un poco del texto del post como contenido de la notificación */}
               <p className='text-xs text-gray-600 mt-1 line-clamp-2'>{notif.text.substring(0, 80)}...</p>
-              <span className='text-xs text-gray-400 mt-1 block'>Hace {notif.time} días</span>
+              <span className='text-xs text-gray-400 mt-1 block'>{notif.time} days ago</span>
             </div>
           </div>
         ))}

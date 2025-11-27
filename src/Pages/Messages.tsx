@@ -78,7 +78,7 @@ function Messages() {
       
       {/* Botón volver al feed */}
       <button className="back-btn" onClick={() => navigate('/feed')}>
-        ← Volver a Inicio
+        ← Return to home
       </button>
 
       {/* Buscador */}
@@ -88,7 +88,7 @@ function Messages() {
           <svg className="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
           </svg>
-          <input type="text" placeholder="Buscar contactos..." />
+          <input type="text" placeholder="Search contacts..." />
         </div>
       </div>
 
@@ -129,7 +129,7 @@ function Messages() {
         <button className="back-to-list-btn" onClick={handleBackToChats}>
            ←
         </button>
-        <h2>{selectedChat ? selectedChat.user : 'Selecciona un chat'}</h2>
+        <h2>{selectedChat ? selectedChat.user : 'Select a chat'}</h2>
       </div>
 
       {/* Mensajes de prueba */}
@@ -150,10 +150,10 @@ function Messages() {
         <input
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Escribe un mensaje..."
+          placeholder="Write a message..."
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
         />
-        <button onClick={handleSend}>Enviar</button>
+        <button onClick={handleSend}>Send</button>
       </div>
     </div>
   );
