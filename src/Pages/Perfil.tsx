@@ -47,7 +47,7 @@ const Perfil: React.FC = () => {
   );
   const [nombre, setNombre] = useState(currentUser?.username || "Usuario");
   const [ocupacion, setOcupacion] = useState(
-    currentUser?.occupation || "Estudiante de Diseño de Medios Interactivos"
+    currentUser?.occupation || "Interctive Media Design Student"
   );
 
   // Estados del modal de edición
