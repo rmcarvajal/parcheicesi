@@ -21,26 +21,26 @@ function NavBarDsk() {
         to="/feed" 
         className="text-brand font-bold text-2xl w-fit my-1 hover:pl-1.5 hover:pr-5.5 hover:bg-orange hover:text-white ease-in transition-transform hover:translate-x-2"
         >
-        Inicio
+        Home
       </NavLink>
 
         <NavLink 
         to="/messages" 
         className="text-brand font-bold text-2xl w-fit my-1 hover:pl-1.5 hover:pr-5.5 hover:bg-yellow hover:text-black ease-in transition-transform hover:translate-x-2"
         >
-        Mensajes
+        Messages
       </NavLink>
 
       <NavLink 
         to="/materias" className="text-brand font-bold text-2xl w-fit my-1 hover:pl-1.5 hover:pr-5.5 hover:bg-purple hover:text-white ease-in transition-transform hover:translate-x-2"
         >
-        Materias
+        Classes
       </NavLink>
 
       <NavLink 
         to="/perfil" className="text-brand font-bold text-2xl w-fit my-1 hover:pl-1.5 hover:pr-5.5 hover:bg-secondary hover:text-white ease-in transition-transform hover:translate-x-2"
         >
-        Perfil
+        Profile
       </NavLink>
       
         </nav>

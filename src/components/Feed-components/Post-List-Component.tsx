@@ -275,9 +275,9 @@ function PostList({ userFilter }: PostListProps) {
 
   return (
     <div id="post-list-container" className="flex flex-col items-center gap-2.5 px-4 py-40 md:py-8 min-h-screen w-full bg-gradient-to-b from-brand-light to-white">
-      <div id="post-list-header" className="flex flex-row justify-between max-w-100 w-full px-2">
-        <h1 className="font-bold text-2xl">Últimas publicaciones</h1>
-        <button id="añadir-btn" className="text-brand font-bold bg-white rounded-2xl p-2 px-6 border hover:bg-brand hover:text-white cursor-pointer" onClick={() => setShowForm(!showForm)}>+ Añadir</button>
+      <div id="post-list-header" className="flex flex-row justify-evenly max-w-100 w-full px-2">
+        <h1 className="font-bold text-2xl">Latest posts</h1>
+        <button id="añadir-btn" className="text-brand font-bold bg-white rounded-2xl p-2 px-6 border hover:bg-brand hover:text-white cursor-pointer" onClick={() => setShowForm(!showForm)}>+ add</button>
       </div>
 
       {showForm && <PostForm onSubmit={(p) => { handlePostCreated(p); setShowForm(false); }} />}
@@ -323,7 +323,7 @@ function PostList({ userFilter }: PostListProps) {
             {loading ? 'Cargando...' : 'Cargar más'}
           </button>
         ) : (
-          <p className="text-sm text-gray-500">No hay más publicaciones</p>
+          <p className="text-sm text-gray-500">No posts found</p>
         )}
       </div>
     </div>

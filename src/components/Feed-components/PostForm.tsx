@@ -109,7 +109,7 @@ const PostForm: React.FC<Props> = ({ onSubmit }) => {
     <form className="flex flex-col gap-4 p-4 bg-white rounded-2xl border border-brand shadow-md max-w-lg w-full mx-auto" onSubmit={handleSubmit}>
       <textarea
         className="border rounded-md p-2 resize-none"
-        placeholder="¿Qué quieres compartir?"
+        placeholder="What would you like to share?"
         value={text}
         onChange={handleTextChange}
         rows={3}
@@ -132,7 +132,7 @@ const PostForm: React.FC<Props> = ({ onSubmit }) => {
         className="bg-brand text-white font-bold py-2 rounded-xl hover:bg-brand-dark transition disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={loading || (!text && !preview)}
       >
-        {loading ? "Publicando..." : "Publicar"}
+        {loading ? "Posting..." : "Post"}
       </button>
     </form>
   );

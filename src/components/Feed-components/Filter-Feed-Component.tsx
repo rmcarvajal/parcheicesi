@@ -5,10 +5,10 @@ function FilterFeed (){
         <div id="filter-feed" className="overflow-scroll md:overflow-auto w-full ">
         
             <div className="flex flex-row gap-2.5 justify-around">
-                <button className={filterBtn}>Eventos</button>
+                <button className={filterBtn}>Events</button>
                 <button className={filterBtn}>Campus</button>
-                <button className={filterBtn}>Noticias</button>
-                <button className={filterBtn}>Donaciones</button>
+                <button className={filterBtn}>News</button>
+                <button className={filterBtn}>Donations</button>
             </div>
         </div>
     )
