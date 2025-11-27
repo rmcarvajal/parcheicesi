@@ -5,20 +5,20 @@ export function timeAgo(timestampMs: number): string {
   const now = Date.now();
   const diff = Math.max(0, now - timestampMs); // ms
   const sec = Math.floor(diff / 1000);
-  if (sec < 60) return `Hace ${sec} ${sec === 1 ? 'segundo' : 'segundos'}`;
+  if (sec < 60) return ` ${sec} ${sec === 1 ? 'second' : 'seconds'} ago`;
 
   const min = Math.floor(sec / 60);
-  if (min < 60) return `Hace ${min} ${min === 1 ? 'minuto' : 'minutos'}`;
+  if (min < 60) return ` ${min} ${min === 1 ? 'minute' : 'minutes'} ago`;
 
   const hrs = Math.floor(min / 60);
-  if (hrs < 24) return `Hace ${hrs} ${hrs === 1 ? 'hora' : 'horas'}`;
+  if (hrs < 24) return ` ${hrs} ${hrs === 1 ? 'hour' : 'hours'} ago`;
 
   const days = Math.floor(hrs / 24);
-  if (days < 30) return `Hace ${days} ${days === 1 ? 'día' : 'días'}`;
+  if (days < 30) return ` ${days} ${days === 1 ? 'day' : 'days'} ago`;
 
   const months = Math.floor(days / 30);
-  if (months < 12) return `Hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
+  if (months < 12) return ` ${months} ${months === 1 ? 'month' : 'months'} ago`;
 
   const years = Math.floor(months / 12);
-  return `Hace ${years} ${years === 1 ? 'año' : 'años'}`;
+  return ` ${years} ${years === 1 ? 'year' : 'years'} ago`;
 }
